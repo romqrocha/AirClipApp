@@ -4,7 +4,6 @@ using Avalonia.Controls.Templates;
 using AirClipApp.ViewModels;
 
 namespace AirClipApp;
-
 public class ViewLocator : IDataTemplate
 {
     public Control? Build(object? param)
