@@ -14,7 +14,13 @@
              to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
         <vm:MainWindowViewModel/>
     </Design.DataContext>
-
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    
+    <!-- Content -->
+    <StackPanel Margin="20">
+        <TextBlock Margin="0 5" Text="{Binding PathPrompt}"/>
+        <TextBox Name="PathTextBox" Watermark="{Binding ChocolateyPathExample, StringFormat='Example: {0}'}"/>
+        <Button Margin="0 5" Click="OnSubmit" Content="Submit"></Button>
+        <TextBlock Name="ErrorText" Margin="0 10" Text=""/>
+    </StackPanel>
+    
 </Window>
