@@ -4,6 +4,8 @@
     <option name="projectPerEditor">
       <map>
         <entry key="AirClipApp/App.axaml" value="AirClipApp/AirClipApp.csproj" />
+        <entry key="AirClipApp/EnterPathPage.axaml" value="AirClipApp/AirClipApp.csproj" />
+        <entry key="AirClipApp/HomePage.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/Views/MainWindow.axaml" value="AirClipApp/AirClipApp.csproj" />
       </map>
     </option>

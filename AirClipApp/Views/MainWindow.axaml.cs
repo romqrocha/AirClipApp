@@ -8,18 +8,8 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
+        PageContent.Content = new HomePage(); // Show Home page when the app starts
     }
 
-    public void OnSubmit(object? sender, RoutedEventArgs e)
-    {
-        string ffmpegPath;
-        if (string.IsNullOrWhiteSpace(PathTextBox.Text))
-        {
-            ErrorText.Text = "Please enter a path before submitting.";
-        }
-        else
-        {
-            ErrorText.Text = "";
-        }
-    }
+    
 }
