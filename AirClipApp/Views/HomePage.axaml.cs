@@ -15,7 +15,7 @@ public partial class HomePage : UserControl
     }
     private void OnGetStartedClick(object? sender, RoutedEventArgs e)
     {
-        if (this.Parent is ContentControl contentControl)
+        if (Parent is ContentControl contentControl)
         {
             contentControl.Content = new EnterPathPage();
         }

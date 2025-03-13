@@ -8,21 +8,29 @@ namespace AirClipApp.Views;
 
 public partial class EnterPathPage : UserControl
 {
+    private EnterPathPageViewModel Data { get; }
+
     public EnterPathPage()
     {
         InitializeComponent();
-        DataContext = new EnterPathPageViewModel();
+        Data = new EnterPathPageViewModel();
+        DataContext = Data;
+
     }
     public void OnSubmit(object? sender, RoutedEventArgs e)
     {
-        string ffmpegPath;
         if (string.IsNullOrWhiteSpace(PathTextBox.Text))
         {
             ErrorText.Text = "Please enter a path before submitting.";
+            return;
         }
-        else
+        
+        ErrorText.Text = "";
+        Data.InputtedFfmpegPath = PathTextBox.Text;
+
+        if (Parent is ContentControl parent)
         {
-            ErrorText.Text = "";
+            parent.Content = new ImportPage();
         }
     }
 }

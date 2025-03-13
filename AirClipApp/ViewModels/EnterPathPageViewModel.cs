@@ -8,5 +8,5 @@ public class EnterPathPageViewModel : ViewModelBase
     public string ChocolateyPathExample =>
         @"C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\";
 
-    public string ErrorMsg { get; set; } = string.Empty;
+    public string InputtedFfmpegPath { get; set; } = string.Empty;
 }

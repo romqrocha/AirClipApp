@@ -9,6 +9,7 @@
         <entry key="AirClipApp/Views/EditorPage.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/Views/EnterPathPage.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/Views/HomePage.axaml" value="AirClipApp/AirClipApp.csproj" />
+        <entry key="AirClipApp/Views/ImportPage.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/Views/MainWindow.axaml" value="AirClipApp/AirClipApp.csproj" />
       </map>
     </option>
