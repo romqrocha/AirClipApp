@@ -2,10 +2,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodels="clr-namespace:AirClipApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AirClipApp.EnterPathPage">
+             x:Class="AirClipApp.Views.EnterPathPage"
+             x:DataType="viewmodels:EnterPathPageViewModel">
     <StackPanel Margin="20">
-        <TextBlock Margin="0 5" Text="Please enter the absolute path to your installed Ffmpeg binaries:"/>
+        <TextBlock Margin="0 5" Text="{Binding PathPrompt}"/>
         <TextBox Name="PathTextBox" Watermark="C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\"/>
         <Button Margin="0 5" Click="OnSubmit" Content="Submit"/>
         <TextBlock Name="ErrorText" Margin="0 10" Text=""/>

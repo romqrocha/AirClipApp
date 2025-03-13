@@ -1,15 +1,17 @@
+using AirClipApp.ViewModels;
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
-namespace AirClipApp;
+namespace AirClipApp.Views;
 
 public partial class EnterPathPage : UserControl
 {
     public EnterPathPage()
     {
         InitializeComponent();
+        DataContext = new EnterPathPageViewModel();
     }
     public void OnSubmit(object? sender, RoutedEventArgs e)
     {

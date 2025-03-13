@@ -1,0 +1,14 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewmodels="clr-namespace:AirClipApp.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AirClipApp.Views.HomePage"
+             x:DataType="viewmodels:HomePageViewModel">
+    
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+        <TextBlock FontSize="30" HorizontalAlignment="Center" Text="Welcome to AirClip"/>
+        <Button HorizontalAlignment="Center" Content="Get Started" Click="OnGetStartedClick"/>
+    </StackPanel>
+</UserControl>
