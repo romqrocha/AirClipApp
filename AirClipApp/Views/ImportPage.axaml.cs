@@ -25,5 +25,13 @@ public partial class ImportPage : UserControl
         
         string videoPath = await ViewModel.ImportFromFileSystem(topLevel);
         ImportStatus.Text = $"Importing '{videoPath}' ...";
+        
+        // TODO: validate video path
+        // TODO: initialize video editor
+        
+        if (Parent is ContentControl parent)
+        {
+            parent.Content = new EditorPage();
+        }
     }
 }
