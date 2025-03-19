@@ -1,10 +1,8 @@
-﻿using System;
-using System.Drawing;
-using System.IO;
+﻿using System.Drawing;
 using FFMpegCore;
 using FFMpegCore.Enums;
 
-namespace AirClipApp;
+namespace VideoEditor;
 
 /// <summary>
 /// Implements editor functionality for this program by calling FFMpeg

@@ -1,8 +1,6 @@
-﻿using System;
-using System.IO;
-using FFMpegCore;
+﻿using FFMpegCore;
 
-namespace AirClipApp;
+namespace VideoEditor;
 
 public class Video
 {

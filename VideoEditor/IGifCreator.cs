@@ -1,7 +1,6 @@
-﻿using System;
-using System.Drawing;
+﻿using System.Drawing;
 
-namespace AirClipApp;
+namespace VideoEditor;
 
 /// <summary>
 /// Defines a method for editors that want to be able to capture gifs from videos

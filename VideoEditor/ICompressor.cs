@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AirClipApp;
+﻿namespace VideoEditor;
 
 /// <summary>
 /// Defines methods for classes that want to compress videos.

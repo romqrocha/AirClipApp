@@ -6,6 +6,7 @@
         <entry key="AirClipApp/App.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/EnterPathPage.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/HomePage.axaml" value="AirClipApp/AirClipApp.csproj" />
+        <entry key="AirClipApp/ScrollableRow.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/Views/EditorPage.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/Views/EnterPathPage.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipApp/Views/HomePage.axaml" value="AirClipApp/AirClipApp.csproj" />

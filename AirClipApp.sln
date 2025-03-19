@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirClipApp", "AirClipApp\Ai
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestAirClipApp", "UnitTestAirClipApp\UnitTestAirClipApp.csproj", "{C9DE40C3-143E-49C6-98C0-E818724B4838}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEditor", "VideoEditor\VideoEditor.csproj", "{FA9F65D1-C7B2-454A-A38B-D1991C381B0F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirClipControls", "AirClipControls\AirClipControls.csproj", "{281C3EEA-0296-4468-9C21-792276030138}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{C9DE40C3-143E-49C6-98C0-E818724B4838}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9DE40C3-143E-49C6-98C0-E818724B4838}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C9DE40C3-143E-49C6-98C0-E818724B4838}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA9F65D1-C7B2-454A-A38B-D1991C381B0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA9F65D1-C7B2-454A-A38B-D1991C381B0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA9F65D1-C7B2-454A-A38B-D1991C381B0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA9F65D1-C7B2-454A-A38B-D1991C381B0F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{281C3EEA-0296-4468-9C21-792276030138}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{281C3EEA-0296-4468-9C21-792276030138}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{281C3EEA-0296-4468-9C21-792276030138}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{281C3EEA-0296-4468-9C21-792276030138}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -1,8 +1,6 @@
-﻿using System;
-using System.Drawing;
-using FFMpegCore.Enums;
+﻿using System.Drawing;
 
-namespace AirClipApp;
+namespace VideoEditor;
 
 /// <summary>
 /// Defines all the operations that an editor should perform on a video,
