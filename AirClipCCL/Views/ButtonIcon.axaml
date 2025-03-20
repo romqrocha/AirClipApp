@@ -1,0 +1,25 @@
+﻿<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:views="clr-namespace:AirClipCCL.Views">
+
+    <!-- axaml that will be displayed in the designer, 
+     it can be used for prototyping and visualizing the use of a template -->
+    <Design.PreviewWith>
+        <views:ButtonIcon/>
+    </Design.PreviewWith>
+
+    <ControlTheme x:Key="AirClipButtonIcon" TargetType="views:ButtonIcon">
+        <Setter Property="Template">
+            <ControlTemplate>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Spacing="5">
+                    <Button Width="50" Height="50" Command="{TemplateBinding HandleClick}">
+                        <PathIcon Data="{StaticResource CutRegular}"></PathIcon>
+                    </Button>
+                    <TextBlock Text="{TemplateBinding IconLabel}" HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"/>
+                </StackPanel>
+            </ControlTemplate>
+        </Setter>
+    </ControlTheme>
+</ResourceDictionary>

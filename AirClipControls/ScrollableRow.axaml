@@ -3,6 +3,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AirClipControls.ScrollableRow">
-    Welcome to Avalonia!
+             x:Class="AirClipControls.ScrollableRow"
+             xmlns:namespace="using:AirClipControls"
+             x:DataType="namespace:UserControlViewModel">
+    <DockPanel
+        Background="#151515"
+        LastChildFill="True">
+        <Label DockPanel.Dock="Top" Content="User Control \W/"/>
+        <Border
+            Margin="4"
+            Padding="4"
+            CornerRadius="4"
+            Background="#252525">
+            <ItemsControl ItemsSource="{Binding TemplateViewModels}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.DataTemplates>
+                    <DataTemplate x:DataType="namespace:TemplateViewModel">
+                        <namespace:ButtonIcon 
+                            Name="{Binding ExpanderName}"
+                            Content="{Binding Content}"
+                            IsChecked="{Binding IsChecked}"
+                            CheckboxVisible="{Binding CheckboxVisible}"/>
+                    </DataTemplate>
+                    <DataTemplate x:DataType="namespace:TemplateViewModel">
+                        <namespace:ButtonIcon 
+                            Name="{Binding ExpanderName}"
+                            Content="{Binding Content}"
+                            IsChecked="{Binding IsChecked}"
+                            CheckboxVisible="{Binding CheckboxVisible}"/>
+                    </DataTemplate>
+                </ItemsControl.DataTemplates>
+            </ItemsControl>
+        </Border>
+    </DockPanel>
 </UserControl>

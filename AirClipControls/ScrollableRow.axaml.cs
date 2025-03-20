@@ -8,6 +8,7 @@ public partial class ScrollableRow : UserControl
 {
     public ScrollableRow()
     {
+        DataContext = new UserControlViewModel();
         InitializeComponent();
     }
 }
