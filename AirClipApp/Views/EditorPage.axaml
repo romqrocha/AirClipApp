@@ -6,6 +6,7 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipApp.Views.EditorPage">
     <StackPanel Margin="20">
+        <TextBlock Text="Editor Page"></TextBlock>
         <views:ScrollableSelectionRow/>
     </StackPanel>
 </UserControl>

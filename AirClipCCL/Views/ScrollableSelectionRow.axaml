@@ -10,7 +10,7 @@
     <ScrollViewer>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20" 
                     Orientation="Horizontal">
-            <views:ButtonIcon Theme="{StaticResource AirClipButtonIcon}" IconLabel="Cut"/>
+            <views:ButtonIcon IconLabel="Cut"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

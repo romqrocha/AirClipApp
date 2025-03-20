@@ -8,7 +8,7 @@
         <views:ButtonIcon/>
     </Design.PreviewWith>
 
-    <ControlTheme x:Key="AirClipButtonIcon" TargetType="views:ButtonIcon">
+    <ControlTheme x:Key="{x:Type views:ButtonIcon}" TargetType="views:ButtonIcon">
         <Setter Property="Template">
             <ControlTemplate>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
