@@ -5,8 +5,17 @@ using FFMpegCore.Enums;
 namespace VideoEditor;
 
 /// <summary>
-/// Implements editor functionality for this program by calling FFMpeg
+/// Implements editor functionality for this program by calling an FFmpeg process.
 /// </summary>
+/// <remarks>
+/// If you are looking for method documentation, it's all inherited from the
+/// interfaces they implement.
+/// </remarks>
+/// <resources>
+/// The <see href="https://github.com/rosenbjerg/FFMpegCore?tab=readme-ov-file#ffmpegcore">
+/// FFMpegCore documentation </see> was heavily consulted to write this implementation.
+/// </resources>
+/// <authors> Rodrigo Rocha, Tae Seo </authors>
 public class FfmpegEditor : IEditor, IGifCreator, ICompressor
 {
     /// <summary>

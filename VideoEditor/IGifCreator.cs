@@ -5,6 +5,8 @@ namespace VideoEditor;
 /// <summary>
 /// Defines a method for editors that want to be able to capture gifs from videos
 /// </summary>
+/// <resources> No external resources were used to make this interface. </resources>
+/// <authors> Rodrigo Rocha, Tae Seo </authors>
 public interface IGifCreator
 {
     /// <summary>

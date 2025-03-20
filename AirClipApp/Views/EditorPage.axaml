@@ -5,8 +5,22 @@
              xmlns:views="clr-namespace:AirClipCCL.Views;assembly=AirClipCCL"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipApp.Views.EditorPage">
-    <StackPanel Margin="20">
-        <TextBlock Text="Editor Page"></TextBlock>
-        <views:ScrollableSelectionRow/>
-    </StackPanel>
+    <DockPanel>
+        <StackPanel DockPanel.Dock="Left" Width="200" Background="LightGray">
+            <TextBlock Text="Edits (Top left)" FontSize="16" HorizontalAlignment="Center"/>
+            <views:ScrollableSelectionRow/>
+        </StackPanel>
+        
+        <ScrollViewer DockPanel.Dock="Bottom" HorizontalScrollBarVisibility="Auto" Height="100">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Timeline (Bottom)" FontSize="16" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <StackPanel Background="LightBlue">
+            <TextBlock Text="Preview (Top right)" FontSize="16" HorizontalAlignment="Center"/>
+            <Button Content="Action 1"/>
+            <Button Content="Action 2"/>
+        </StackPanel>
+    </DockPanel>
 </UserControl>

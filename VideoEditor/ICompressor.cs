@@ -3,6 +3,8 @@
 /// <summary>
 /// Defines methods for classes that want to compress videos.
 /// </summary>
+/// <resources> No external resources were used to make this interface. </resources>
+/// <authors> Rodrigo Rocha, Tae Seo </authors>
 public interface ICompressor
 {
     /// <summary>

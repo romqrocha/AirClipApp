@@ -2,12 +2,21 @@
 
 namespace VideoEditor;
 
+/// <summary>
+/// Represents a video file.
+/// </summary>
+/// <remarks>
+/// Relies on an FFProbe process to gather information about the video file being
+/// represented.
+/// </remarks>
+/// <resources> No external resources were used for this class. </resources>
+/// <authors> Rodrigo Rocha, Tae Seo </authors>
 public class Video
 {
     /** General info about this video's file. */
     private FileInfo VideoFile { get; set; }
     
-    /** Path to this video's file. */
+    /** Absolute path to this video's file. */
     public string Path { get; }
     
     /** This video's file extension. */

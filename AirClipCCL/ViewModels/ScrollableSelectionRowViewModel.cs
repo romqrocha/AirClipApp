@@ -12,6 +12,31 @@ public partial class ScrollableSelectionRowViewModel : ObservableObject
         EditingOperations.Add(new ButtonIconViewModel
         {
             HandleClick = () => {},
+            IconLabel = "Trim"
+        });
+        EditingOperations.Add(new ButtonIconViewModel
+        {
+            HandleClick = () => {},
+            IconLabel = "Merge"
+        });
+        EditingOperations.Add(new ButtonIconViewModel
+        {
+            HandleClick = () => {},
+            IconLabel = "Mute"
+        });
+        EditingOperations.Add(new ButtonIconViewModel
+        {
+            HandleClick = () => {},
+            IconLabel = "Cut"
+        });
+        EditingOperations.Add(new ButtonIconViewModel
+        {
+            HandleClick = () => {},
+            IconLabel = "Cut"
+        });
+        EditingOperations.Add(new ButtonIconViewModel
+        {
+            HandleClick = () => {},
             IconLabel = "Cut"
         });
     }
