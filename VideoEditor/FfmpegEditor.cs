@@ -9,7 +9,7 @@ namespace VideoEditor;
 /// </summary>
 /// <remarks>
 /// If you are looking for method documentation, it's all inherited from the
-/// interfaces they implement.
+/// interfaces that are implemented.
 /// </remarks>
 /// <resources>
 /// The <see href="https://github.com/rosenbjerg/FFMpegCore?tab=readme-ov-file#ffmpegcore">
@@ -25,9 +25,14 @@ public class FfmpegEditor : IEditor, IGifCreator, ICompressor
     /// <param name="tempFilesWorkingFolder">A folder where files can be stored temporarily.</param>
     public FfmpegEditor(DirectoryInfo ffmpegBinFolder, DirectoryInfo tempFilesWorkingFolder)
     {
+        // This method is used to configure global FFmpeg settings, such as setting the path to the FFmpeg executable
+        // Takes an FFOptions object as an argument. 
+        // FFOptions is a class in FFMpegCore that holds configuration options for FFmpeg operations
         GlobalFFOptions.Configure(new FFOptions
         {
+            // Specifies the folder where the FFmpeg and FFprobe executables are located.
             BinaryFolder = ffmpegBinFolder.FullName, 
+            // Defines the folder where temporary files are stored during FFmpeg operations.
             TemporaryFilesFolder = tempFilesWorkingFolder.FullName,
         });
     }

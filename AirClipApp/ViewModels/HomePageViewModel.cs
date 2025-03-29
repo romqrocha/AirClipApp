@@ -6,7 +6,7 @@ namespace AirClipApp.ViewModels;
 /// View Model for HomePage
 /// </summary>
 /// <authors> Rodrigo Rocha, Tae Seo </authors>
-public partial class HomePageViewModel : ObservableObject
+public class HomePageViewModel : ObservableObject
 {
     
 }

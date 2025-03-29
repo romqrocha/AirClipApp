@@ -1,8 +1,6 @@
 using AirClipApp.ViewModels;
-using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using Avalonia.Markup.Xaml;
 
 namespace AirClipApp.Views;
 
@@ -23,8 +21,10 @@ public partial class HomePage : UserControl
     }
     private void OnGetStartedClick(object? sender, RoutedEventArgs e)
     {
+        // Why is this here?
         if (Parent is ContentControl contentControl)
         {
+            // Main Window's ContentControl becomes EnterPathPage
             contentControl.Content = new EnterPathPage();
         }
     }
