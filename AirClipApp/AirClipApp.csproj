@@ -28,5 +28,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\AirClipCCL\AirClipCCL.csproj" />
+      <ProjectReference Include="..\VideoEditor\VideoEditor.csproj" />
     </ItemGroup>
 </Project>

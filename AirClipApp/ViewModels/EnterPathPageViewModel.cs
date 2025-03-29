@@ -1,4 +1,5 @@
 using CommunityToolkit.Mvvm.ComponentModel;
+using VideoEditor;
 
 namespace AirClipApp.ViewModels;
 
@@ -20,4 +21,6 @@ public class EnterPathPageViewModel : ObservableObject
         @"C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\";
 
     public string InputtedFfmpegPath { get; set; } = string.Empty;
+
+    public FfmpegEditor? FfmpegEditor { get; set; } = null;
 }

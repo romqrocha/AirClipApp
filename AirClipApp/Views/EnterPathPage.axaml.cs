@@ -1,6 +1,9 @@
 using AirClipApp.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using VideoEditor;
+using FFMpegCore;
+
 
 namespace AirClipApp.Views;
 
@@ -34,10 +37,14 @@ public partial class EnterPathPage : UserControl
         
         ErrorText.Text = "";
         Data.InputtedFfmpegPath = PathTextBox.Text;
-
+        
+        // Instantiate an FfmpegEditor
+        //Data.FfmpegEditor = FfmpegEditor()
         if (Parent is ContentControl parent)
         {
             parent.Content = new ImportPage();
         }
     }
+    
+    // Create method that checks if the path is valid
 }

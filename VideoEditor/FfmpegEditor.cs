@@ -37,6 +37,7 @@ public class FfmpegEditor : IEditor, IGifCreator, ICompressor
         });
     }
     
+    
     public void CaptureImage(string input, string output, Size widthHeight, TimeSpan captureTime)
     {
         FFMpeg.Snapshot(input, output, widthHeight, captureTime);
