@@ -29,35 +29,50 @@ public partial class EnterPathPage : UserControl
     }
     public void OnSubmit(object? sender, RoutedEventArgs e)
     {
-        if (string.IsNullOrWhiteSpace(PathTextBox.Text))
+        if (string.IsNullOrWhiteSpace(FfmpegPathTextBox.Text) || string.IsNullOrWhiteSpace(TempFilesPathTextBox.Text))
         {
             ErrorText.Text = "Please enter a path before submitting.";
             return;
         }
         
         ErrorText.Text = "";
-        Data.InputtedFfmpegPath = PathTextBox.Text;
+        Data.InputtedFfmpegPath = FfmpegPathTextBox.Text;
+        Data.InputtedTempFilesPath = TempFilesPathTextBox.Text;
 
         // Instantiate an FfmpegEditor
         if (IsPathValid(Data.InputtedFfmpegPath))
         {
-            // Data.FfmpegEditor = FfmpegEditor()
+            // Data.FfmpegEditor = new FfmpegEditor(new DirectoryInfo(Data.InputtedFfmpegPath),
+            //     new DirectoryInfo(Data.InputtedTempFilesPath));
+            ErrorText.Text = "Good job! The path is valid";
         }
+        else
+        {
+            ErrorText.Text = "The path you have entered is not valid. Try again.";
+            return;
+        }
+        
         if (Parent is ContentControl parent)
         {
             parent.Content = new ImportPage();
         }
+
     }
     
-    // Method that checks if the path is valid by 
-    public bool IsPathValid(string inputtedFfmpegPath)
+    // Method that checks if the path is valid 
+    private bool IsPathValid(string inputtedFfmpegPath)
     {
+        if (!Directory.Exists(inputtedFfmpegPath)) return false;
+        
+
         DirectoryInfo ffmpegDirectory = new DirectoryInfo(inputtedFfmpegPath);
-        string ffmpegFileName = "ffmpeg";
-        string ffprobeFileName = "ffprobe";
-        bool ffmpegExists = ffmpegDirectory.GetFiles(ffmpegFileName).Length > 0;
-        bool ffprobeExists = ffmpegDirectory.GetFiles(ffprobeFileName).Length > 0;
-        if (ffmpegExists && ffprobeExists) return true; 
-        return false;
+        bool ffmpegExists = File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffmpeg.exe")) ||
+                            File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffmpeg")); 
+
+        bool ffprobeExists = File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffprobe.exe")) ||
+                             File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffprobe"));
+
+        return ffmpegExists && ffprobeExists;
     }
+
 }
