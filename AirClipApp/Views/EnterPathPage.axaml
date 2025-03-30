@@ -7,7 +7,7 @@
              x:Class="AirClipApp.Views.EnterPathPage"
              x:DataType="viewmodels:EnterPathPageViewModel">
     <StackPanel Margin="20">
-        <TextBlock Margin="0 5" Text="{Binding PathPrompt}"/>
+        <TextBlock Margin="0 5" Text="{Binding FfmpegPathPrompt}"/>
         <TextBox Name="PathTextBox" Watermark="{Binding ChocolateyPathExample}"/>
         <Button Margin="0 5" Click="OnSubmit" Content="Submit"/>
         <TextBlock Name="ErrorText" Margin="0 10" Text=""/>

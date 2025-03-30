@@ -11,10 +11,10 @@ public interface IEditor
     /// <summary>
     /// Creates an image from one of the frames in the input video.
     /// </summary>
-    /// <param name="input">Path to the input file.</param>
+    /// <param name="input">Path to the input video file.</param>
     /// <param name="output">Path to where the output file will be.</param>
     /// <param name="widthHeight">The width and height of the image.
-    /// -1 in width or height tells ffmpeg resize while keeping aspect ratio.</param>
+    /// -1 in width or height tells ffmpeg to resize while keeping aspect ratio.</param>
     /// <param name="captureTime">The time of the frame you want to capture</param>
     public void CaptureImage(string input, string output, Size widthHeight, TimeSpan captureTime);
     

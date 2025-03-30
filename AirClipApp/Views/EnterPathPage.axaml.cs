@@ -3,7 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Interactivity;
 using VideoEditor;
 using FFMpegCore;
-
+using System.IO;
 
 namespace AirClipApp.Views;
 
@@ -37,14 +37,27 @@ public partial class EnterPathPage : UserControl
         
         ErrorText.Text = "";
         Data.InputtedFfmpegPath = PathTextBox.Text;
-        
+
         // Instantiate an FfmpegEditor
-        //Data.FfmpegEditor = FfmpegEditor()
+        if (IsPathValid(Data.InputtedFfmpegPath))
+        {
+            // Data.FfmpegEditor = FfmpegEditor()
+        }
         if (Parent is ContentControl parent)
         {
             parent.Content = new ImportPage();
         }
     }
     
-    // Create method that checks if the path is valid
+    // Method that checks if the path is valid by 
+    public bool IsPathValid(string inputtedFfmpegPath)
+    {
+        DirectoryInfo ffmpegDirectory = new DirectoryInfo(inputtedFfmpegPath);
+        string ffmpegFileName = "ffmpeg";
+        string ffprobeFileName = "ffprobe";
+        bool ffmpegExists = ffmpegDirectory.GetFiles(ffmpegFileName).Length > 0;
+        bool ffprobeExists = ffmpegDirectory.GetFiles(ffprobeFileName).Length > 0;
+        if (ffmpegExists && ffprobeExists) return true; 
+        return false;
+    }
 }
