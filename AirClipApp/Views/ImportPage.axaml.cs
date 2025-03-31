@@ -2,6 +2,7 @@
 using AirClipApp.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
+using VideoEditor;
 
 namespace AirClipApp.Views;
 
@@ -33,7 +34,7 @@ public partial class ImportPage : UserControl
         
         string videoPath = await ViewModel.ImportFromFileSystem(topLevel);
         
-        // Removing the first 7 characters of the path because they make the path invalid.
+        // Removes the first 7 characters of the path because they make the path invalid.
         // Must make sure the video path string is not empty before calling Substring, otherwise
         // it will crash the program.
         if (!string.IsNullOrEmpty(videoPath))
@@ -41,15 +42,14 @@ public partial class ImportPage : UserControl
             videoPath = videoPath.Substring(7);    
         }
         ImportStatus.Text = $"Importing '{videoPath}' ...";
-        
-        // TODO: validate video path
-        // TODO: initialize video editor
+
         if (!IsVideoPathValid(videoPath))
         {
             ImportStatus.Text = $"The video file is not valid. Try again.";
             return;
         }
-        
+
+        MainWindowViewModel.Video = new Video(videoPath);
         if (Parent is ContentControl parent)
         {
             parent.Content = new EditorPage();

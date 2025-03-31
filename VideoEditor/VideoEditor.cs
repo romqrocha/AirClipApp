@@ -3,7 +3,8 @@
 namespace VideoEditor;
 
 /// <summary>
-/// Provides full video editing functionality.
+/// Provides full video editing functionality. Aggregated with interfaces rather than FfmpegEditor for clarity
+/// and organization.
 /// </summary>
 /// <resources> No external resources were used for this class. </resources>
 /// <authors> Rodrigo Rocha, Tae Seo </authors>
@@ -13,14 +14,14 @@ public class VideoEditor
     private readonly IEditor _editor;
     private readonly IGifCreator _gifCreator;
     private readonly ICompressor _compressor;
-    private DirectoryInfo _outputDirectory;
-    private string _outputFileName;
-    private string _outputExtension;
+    private DirectoryInfo? _outputDirectory = null;
+    private string? _outputFileName = null;
+    private string? _outputExtension = null;
     
     /** Absolute path to the imported video file. */
     private string InputPath => _footage.Path;
     /** Absolute path to the final output file. */
-    private string OutputPath => Path.Join(_outputDirectory.FullName, _outputFileName + _outputExtension);
+    private string OutputPath => Path.Join(_outputDirectory?.FullName, _outputFileName + _outputExtension);
 
     /// <summary>
     /// Standard constructor for VideoEditor.
@@ -36,8 +37,7 @@ public class VideoEditor
     /// saved.</param>
     /// <param name="outputFileName">The name of the final output file (no extension)</param>
     /// <param name="outputExtension">The extension of the final output file ('.ext')</param>
-    public VideoEditor(Video video, IEditor editor, IGifCreator gifCreator, ICompressor compressor, 
-        DirectoryInfo outputDirectory, string outputFileName, string outputExtension)
+    public VideoEditor(Video video, IEditor editor, IGifCreator gifCreator, ICompressor compressor)
     {
         _footage = video;
         
@@ -45,9 +45,9 @@ public class VideoEditor
         _gifCreator = gifCreator;
         _compressor = compressor;
         
-        _outputDirectory = outputDirectory;
-        _outputFileName = outputFileName;
-        _outputExtension = outputExtension;
+        // _outputDirectory = outputDirectory;
+        // _outputFileName = outputFileName;
+        // _outputExtension = outputExtension;
     }
 
     /// <summary>

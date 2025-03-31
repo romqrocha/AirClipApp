@@ -14,4 +14,6 @@ public class MainWindowViewModel : ObservableObject
     public static FfmpegEditor? FfmpegEditor { get; set; }
 
     public static Video? Video { get; set; }
+
+    public static VideoEditor.VideoEditor? VideoEditor { get; set; }
 }

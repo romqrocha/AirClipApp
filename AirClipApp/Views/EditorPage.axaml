@@ -5,20 +5,21 @@
              xmlns:views="clr-namespace:AirClipCCL.Views;assembly=AirClipCCL"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipApp.Views.EditorPage">
+    <!-- Dockpanel is a layout container that arranges child elements along edges then fills remaining space. -->
     <DockPanel>
         <StackPanel DockPanel.Dock="Left" Width="200" Background="LightGray">
-            <TextBlock Text="Edits (Top left)" FontSize="16" HorizontalAlignment="Center"/>
+            <TextBlock Text="Edit Tools" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
             <views:ScrollableSelectionRow/>
         </StackPanel>
         
         <ScrollViewer DockPanel.Dock="Bottom" HorizontalScrollBarVisibility="Auto" Height="100">
             <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Timeline (Bottom)" FontSize="16" HorizontalAlignment="Center"/>
+                <TextBlock Text="Timeline" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
             </StackPanel>
         </ScrollViewer>
 
-        <StackPanel Background="LightBlue">
-            <TextBlock Text="Preview (Top right)" FontSize="16" HorizontalAlignment="Center"/>
+        <StackPanel Background="Black">
+            <TextBlock Text="Preview" FontSize="16" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold"/>
             <Button Content="Action 1"/>
             <Button Content="Action 2"/>
         </StackPanel>
