@@ -36,10 +36,6 @@ public class VideoEditor
     /// functionality.</param>
     /// <param name="compressor">Object implementing ICompressor to provide video compression
     /// functionality.</param>
-    /// <param name="outputDirectory">The directory where final output files should be
-    /// saved.</param>
-    /// <param name="outputFileName">The name of the final output file (no extension)</param>
-    /// <param name="outputExtension">The extension of the final output file ('.ext')</param>
     public VideoEditor(Video video, IEditor editor, IGifCreator gifCreator, ICompressor compressor)
     {
         _footage = video;

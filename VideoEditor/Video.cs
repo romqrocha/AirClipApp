@@ -56,7 +56,7 @@ public class Video
         if (!VideoFile.Exists)
             throw new FileNotFoundException($"File {VideoFile.FullName} does not exist.");
 
-        if (!Enum.TryParse<IEditor.Extension>(VideoFile.Extension.Trim('.'), out _))
+        if (!Enum.TryParse<IEditor.Extension>(VideoFile.Extension.Trim('.'), true, out _))
             throw new IOException($"Unsupported extension {VideoFile.Extension}");
 
         Path = VideoFile.FullName;

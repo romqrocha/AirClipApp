@@ -51,7 +51,7 @@ public class UnitTestsVideo
     [Fact]
     public void NewVideo_NullVideoStream()
     {
-        const string mp4Path = $"{TempFilePath}.Mp4";
+        const string mp4Path = $"{TempFilePath}.mp4";
         File.WriteAllBytes(mp4Path, Array.Empty<byte>());
         
         Action act = () => _ = new Video(mp4Path);
