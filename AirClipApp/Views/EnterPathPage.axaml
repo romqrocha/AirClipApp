@@ -8,9 +8,11 @@
              x:DataType="viewmodels:EnterPathPageViewModel">
     <StackPanel Margin="20">
         <TextBlock Margin="0 5" Text="{Binding FfmpegPathPrompt}"/>
-        <TextBox Name="FfmpegPathTextBox" Watermark="{Binding ChocolateyPathExample}"/>
+        <!-- <TextBox Name="FfmpegPathTextBox" Watermark="{Binding ChocolateyPathExample}"/> -->
+        <TextBox Name="FfmpegPathTextBox" Text="/opt/homebrew/Cellar/ffmpeg/7.1.1_1/bin/"/>
         <TextBlock Margin="0 5" Text="{Binding TempFilesPathPrompt}"/>
-        <TextBox Name="TempFilesPathTextBox" Watermark="{Binding TempFilesPathExample}"/>
+        <!-- <TextBox Name="TempFilesPathTextBox" Watermark="{Binding TempFilesPathExample}"/> -->
+        <TextBox Name="TempFilesPathTextBox" Text="/Users/danielseo/Downloads/temp_files"/>
         <Button Margin="0 5" Click="OnSubmit" Content="Submit"/>
         <TextBlock Name="ErrorText" Margin="0 10" Text=""/>
     </StackPanel>

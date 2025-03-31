@@ -10,7 +10,7 @@ namespace AirClipApp.Views;
 /// Avalonia's Documentation </see> while creating this. For information about FFmpeg, see
 /// <see href="https://ffmpeg.org/ffmpeg.html">FFmpeg Documentation</see>.
 /// </resources>
-/// <authors> Rodrigo Rocha, Tae Seo </authors>
+/// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class EditorPage : UserControl
 {
     public EditorPage()
