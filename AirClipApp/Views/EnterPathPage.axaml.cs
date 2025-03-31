@@ -61,7 +61,7 @@ public partial class EnterPathPage : UserControl
 
     }
     
-    // Method that checks if the path is valid 
+    // Method that checks if the path is valid (might want to move this to EnterPathPageViewModel)
     private bool IsPathValid(string inputtedFfmpegPath)
     {
         if (!Directory.Exists(inputtedFfmpegPath)) return false;

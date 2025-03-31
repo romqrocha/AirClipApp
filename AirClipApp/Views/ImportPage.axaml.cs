@@ -1,4 +1,5 @@
-﻿using AirClipApp.ViewModels;
+﻿using System.IO;
+using AirClipApp.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 
@@ -35,10 +36,21 @@ public partial class ImportPage : UserControl
         
         // TODO: validate video path
         // TODO: initialize video editor
-        
+        if (!IsVideoPathValid(videoPath))
+        {
+            ImportStatus.Text = $"The video file is not valid. Try again.";
+            return;
+        }
+
         if (Parent is ContentControl parent)
         {
             parent.Content = new EditorPage();
         }
+    }
+
+    // Method to validate video path. Might want to move this to ImportPageViewModel
+    private bool IsVideoPathValid(string videoPath)
+    {
+        return File.Exists(videoPath);
     }
 }

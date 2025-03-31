@@ -48,7 +48,7 @@ public class ImportPageViewModel : ObservableObject
             await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {
             Title = "Open Text File",
-            FileTypeFilter = [VideoSupported, FilePickerFileTypes.ImageAll],
+            FileTypeFilter = [VideoSupported, FilePickerFileTypes.ImageAll], // TODO: fix 'ImageAll'
             AllowMultiple = false
         });
 
