@@ -32,13 +32,9 @@ public class UnitTestsVideoEditor
         var mockEditor = new Mock<IEditor>();
         var mockGifCreator = new Mock<IGifCreator>();
         var mockCompressor = new Mock<ICompressor>();
-        var outputDirectoryInfo = new DirectoryInfo("Foo");
-        const string outputFileName = "foobar";
-        const IEditor.Extension outputFileType = IEditor.Extension.Mp4;
         
         VideoEditor.VideoEditor editor = new(mockVideo.Object, mockEditor.Object, 
-            mockGifCreator.Object, mockCompressor.Object, outputDirectoryInfo, 
-            outputFileName, outputFileType);
+            mockGifCreator.Object, mockCompressor.Object);
         
         return editor;
     }
