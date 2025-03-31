@@ -84,9 +84,6 @@ public class FfmpegEditor : IEditor, IGifCreator, ICompressor
     {
         TimeSpan startToEnd = endTime - startTime;
         FFMpeg.GifSnapshot(input, output, widthHeight, startTime, startToEnd);
-
-        if (duration.Equals(TimeSpan.Zero))
-            return;
         
         // TODO: speed up or slow down gif according to given duration
     }

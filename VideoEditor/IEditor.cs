@@ -50,10 +50,16 @@ public interface IEditor
     /// <param name="newExtension">The file extension to convert the input video to.</param>
     public void Convert(string input, string output, Extension newExtension);
 
+    /// <summary>
+    /// Defines supported extensions for this editor.
+    /// </summary>
     public enum Extension
     {
         Mp4, 
-        Mov,
-        WebM
+        Mov, 
+        WebM, 
     }
+
+    public static string ExtToString(Extension extension) => 
+        $".{extension.ToString().ToLower()}";
 }
