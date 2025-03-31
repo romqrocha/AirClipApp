@@ -21,7 +21,6 @@ public partial class HomePage : UserControl
     }
     private void OnGetStartedClick(object? sender, RoutedEventArgs e)
     {
-        // Why is this here?
         if (Parent is ContentControl contentControl)
         {
             // Main Window's ContentControl becomes EnterPathPage

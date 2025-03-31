@@ -22,20 +22,28 @@ public class ImportPageViewModel : ObservableObject
     
     public string ImportStatus { get; set; } = string.Empty;
     
-    public static FilePickerFileType VideoSupported { get; } = new("Supported Videos")
+    // A filter that specifies the video formats that are allowed when selecting the video file.
+    private static FilePickerFileType VideoSupported { get; } = new("Supported Videos") // Custom file type filter
     {
+        // Limits file selection to MP4, MOV, and WebM files.
         Patterns = ["*.mp4", "*.mov", "*.webm"],
-        AppleUniformTypeIdentifiers = ["public.video"], // might be wrong
-        MimeTypes = ["video/*"] // might be wrong
+        // Limits file selection to MP4, MOV, and WebM files on macOS.
+        AppleUniformTypeIdentifiers = ["public.mpeg-4", "com.apple.quicktime-movie", "org.webmproject.webm"], 
+        // Limits file selection to MP4, MOV, and WebM files on Linux.
+        MimeTypes = ["video/mp4", "video/quicktime", "video/webm"]
     };
 
     /// <summary>
-    /// Import a video file from the local file system.
+    /// Import a video file from the local file system. 'async' keyword allows the method
+    /// to run asynchronously, meaning it doesn't block the main thread while performing
+    /// the file picker operation.
     /// </summary>
-    /// <param name="topLevel">Top level of the current control.
+    /// <param name="topLevel"> Represents a top-level window or application window.
     /// Alternatively, we can switch to a Window reference later.</param>
     public async Task<string> ImportFromFileSystem(TopLevel topLevel)
     {
+        // Read-only list of IStorageFile objects
+        // IStorageFile is an interface that represents a file in the storage system
         IReadOnlyList<IStorageFile> files = 
             await topLevel.StorageProvider.OpenFilePickerAsync(new FilePickerOpenOptions
         {

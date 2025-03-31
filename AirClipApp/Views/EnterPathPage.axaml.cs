@@ -1,9 +1,9 @@
 using AirClipApp.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
-using VideoEditor;
-using FFMpegCore;
 using System.IO;
+using System.Diagnostics;
+using VideoEditor;
 
 namespace AirClipApp.Views;
 
@@ -18,6 +18,8 @@ namespace AirClipApp.Views;
 /// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class EnterPathPage : UserControl
 {
+    // FFmpeg path: /opt/homebrew/Cellar/ffmpeg/7.1.1_1/bin/
+    // Temp files path: /Users/danielseo/Downloads/temp_files
     private EnterPathPageViewModel Data { get; }
 
     public EnterPathPage()
@@ -25,7 +27,7 @@ public partial class EnterPathPage : UserControl
         InitializeComponent();
         Data = new EnterPathPageViewModel();
         DataContext = Data;
-
+        
     }
     public void OnSubmit(object? sender, RoutedEventArgs e)
     {
@@ -42,9 +44,9 @@ public partial class EnterPathPage : UserControl
         // Instantiate an FfmpegEditor
         if (IsPathValid(Data.InputtedFfmpegPath))
         {
-            // Data.FfmpegEditor = new FfmpegEditor(new DirectoryInfo(Data.InputtedFfmpegPath),
-            //     new DirectoryInfo(Data.InputtedTempFilesPath));
-            ErrorText.Text = "Good job! The path is valid";
+            MainWindowViewModel.FfmpegEditor = new FfmpegEditor(new DirectoryInfo(Data.InputtedFfmpegPath),
+                new DirectoryInfo(Data.InputtedTempFilesPath));
+            
         }
         else
         {
@@ -52,9 +54,9 @@ public partial class EnterPathPage : UserControl
             return;
         }
         
-        if (Parent is ContentControl parent)
+        if (Parent is ContentControl contentControl)
         {
-            parent.Content = new ImportPage();
+            contentControl.Content = new ImportPage();
         }
 
     }
@@ -64,7 +66,6 @@ public partial class EnterPathPage : UserControl
     {
         if (!Directory.Exists(inputtedFfmpegPath)) return false;
         
-
         DirectoryInfo ffmpegDirectory = new DirectoryInfo(inputtedFfmpegPath);
         bool ffmpegExists = File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffmpeg.exe")) ||
                             File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffmpeg")); 

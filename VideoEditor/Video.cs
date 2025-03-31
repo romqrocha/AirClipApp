@@ -6,11 +6,10 @@ namespace VideoEditor;
 /// Represents a video file.
 /// </summary>
 /// <remarks>
-/// Relies on an FFProbe process to gather information about the video file being
-/// represented.
+/// Relies on an FFProbe process to gather information about the video file being represented.
 /// </remarks>
 /// <resources> No external resources were used for this class. </resources>
-/// <authors> Rodrigo Rocha, Tae Seo </authors>
+/// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public class Video
 {
     /** General info about this video's file. */
@@ -22,13 +21,13 @@ public class Video
     /** This video's file extension. */
     public string Extension { get; }
     
-    /** Detailed info about this video's properties. */
+    /** Detailed info about this video's properties (use FFprobe for this) */
     private IMediaAnalysis MediaInfo { get; set; }
-    
-    /** TODO: Video width in pixels (?). */
+
+    /** Use FFProbe.Analyse(filePath) for this */
     public int Width { get; }
-    
-    /** TODO: Video height in pixels (?). */
+
+    /** Use FFProbe.Analyse(filePath) for this */
     public int Height { get; }
     
     /** Video framerate in frames per second. */

@@ -30,5 +30,4 @@ public class EnterPathPageViewModel : ObservableObject
 
     public string InputtedTempFilesPath { get; set; } = string.Empty;
 
-    public FfmpegEditor? FfmpegEditor { get; set; } = null;
 }

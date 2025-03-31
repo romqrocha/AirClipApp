@@ -5,13 +5,13 @@ using Avalonia.Interactivity;
 namespace AirClipApp.Views;
 
 /// <summary>
-/// The page where we the user imports the video that they want to edit.
+/// The page where the user imports the video that they want to edit.
 /// </summary>
 /// <resources>
 /// Followed <see href="https://docs.avaloniaui.net/docs/get-started/test-drive/">
 /// Avalonia's Documentation </see> while creating this.
 /// </resources>
-/// <authors> Rodrigo Rocha, Tae Seo </authors>
+/// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class ImportPage : UserControl
 {
     private ImportPageViewModel ViewModel { get; } 
@@ -23,6 +23,7 @@ public partial class ImportPage : UserControl
         DataContext = ViewModel;
     }
 
+    // Get rid of async keyword?
     public async void OnImport(object? sender, RoutedEventArgs e)
     {
         var topLevel = TopLevel.GetTopLevel(this);

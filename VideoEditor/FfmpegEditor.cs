@@ -32,7 +32,8 @@ public class FfmpegEditor : IEditor, IGifCreator, ICompressor
         {
             // Specifies the folder where the FFmpeg and FFprobe executables are located.
             BinaryFolder = ffmpegBinFolder.FullName, 
-            // Defines the folder where temporary files are stored during FFmpeg operations (like intermediate video/audio processing files) 
+            // Defines the folder where temporary files are stored during FFmpeg operations
+            // (like intermediate video/audio processing files) 
             TemporaryFilesFolder = tempFilesWorkingFolder.FullName,
         });
     }
