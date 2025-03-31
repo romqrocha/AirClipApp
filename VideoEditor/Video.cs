@@ -1,4 +1,5 @@
 ﻿using FFMpegCore;
+using FFMpegCore.Exceptions;
 
 namespace VideoEditor;
 
@@ -43,12 +44,32 @@ public class Video
     /// <exception cref="NullReferenceException">If the file is corrupted or not a valid video.</exception>
     public Video(string inputPath)
     {
-        VideoFile = new FileInfo(inputPath);
+        try
+        {
+            VideoFile = new FileInfo(inputPath);
+        }
+        catch (ArgumentException)
+        {
+            throw new IOException("Video path is empty.");
+        }
+        
+        if (!VideoFile.Exists)
+            throw new FileNotFoundException($"File {VideoFile.FullName} does not exist.");
+
+        if (!Enum.TryParse<IEditor.Extension>(VideoFile.Extension.Trim('.'), out _))
+            throw new IOException($"Unsupported extension {VideoFile.Extension}");
 
         Path = VideoFile.FullName;
         Extension = VideoFile.Extension;
-            
-        MediaInfo = FFProbe.Analyse(Path);
+
+        try
+        {
+            MediaInfo = FFProbe.Analyse(Path);
+        }
+        catch (FFMpegException ex)
+        {
+            throw new NullReferenceException(ex.Message);
+        }
         if (MediaInfo.PrimaryVideoStream is null)
             throw new NullReferenceException($"Primary video stream for {Path} not found.");
         
