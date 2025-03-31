@@ -14,14 +14,17 @@ public class VideoEditor
     private readonly IEditor _editor;
     private readonly IGifCreator _gifCreator;
     private readonly ICompressor _compressor;
-    private DirectoryInfo? _outputDirectory = null;
-    private string? _outputFileName = null;
-    private string? _outputExtension = null;
     
+    private DirectoryInfo? _outputDirectory;
+    private string? _outputFileName;
+    private IEditor.Extension? _outputExtension;
+
     /** Absolute path to the imported video file. */
     private string InputPath => _footage.Path;
+
     /** Absolute path to the final output file. */
-    private string OutputPath => Path.Join(_outputDirectory?.FullName, _outputFileName + _outputExtension);
+    private string OutputPath => Path.Join(_outputDirectory?.FullName, 
+        $"{_outputFileName}{IEditor.ExtToString((IEditor.Extension)_outputExtension)}");
 
     /// <summary>
     /// Standard constructor for VideoEditor.
@@ -40,7 +43,7 @@ public class VideoEditor
     public VideoEditor(Video video, IEditor editor, IGifCreator gifCreator, ICompressor compressor)
     {
         _footage = video;
-        
+
         _editor = editor;
         _gifCreator = gifCreator;
         _compressor = compressor;
@@ -54,9 +57,14 @@ public class VideoEditor
     /// Captures a full-sized image of the imported video at the specified time.
     /// </summary>
     /// <param name="captureTime">The time of the frame you want to capture.</param>
-    public void CaptureFullImage(TimeSpan captureTime)
+    public BooleanResponse CaptureFullImage(TimeSpan captureTime)
     {
+        if (TimeSpanIsOutOfBounds(captureTime))
+            return OutOfBoundsResponse(nameof(captureTime));
+        
         _editor.CaptureImage(InputPath, OutputPath, new Size(-1, -1), captureTime);
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
@@ -65,9 +73,14 @@ public class VideoEditor
     /// <param name="widthHeight">The width and height of the image.
     /// -1 in width or height will resize the image instead of cropping.</param>
     /// <param name="captureTime">The time of the frame you want to capture.</param>
-    public void CaptureCroppedImage(Size widthHeight, TimeSpan captureTime)
+    public BooleanResponse CaptureCroppedImage(Size widthHeight, TimeSpan captureTime)
     {
+        if (TimeSpanIsOutOfBounds(captureTime))
+            return OutOfBoundsResponse(nameof(captureTime));
+        
         _editor.CaptureImage(InputPath, OutputPath, widthHeight, captureTime);
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
@@ -75,34 +88,55 @@ public class VideoEditor
     /// will go first.
     /// </summary>
     /// <param name="otherInputs">Absolute paths to the additional videos.</param>
-    public void MergeWith(string[] otherInputs)
+    public BooleanResponse MergeWith(string[] otherInputs)
     {
+        // TODO: check if all videos have the same extension
+        
+        if (otherInputs.Length == 0)
+            return new BooleanResponse(false, "Must provide at least one video to merge with.");
+        
         string[] allInputs = new string[otherInputs.Length + 1];
         allInputs[0] = InputPath;
         for (int i = 0; i < otherInputs.Length; i++)
         {
             allInputs[i + 1] = otherInputs[i];
         }
+
         _editor.Join(allInputs, OutputPath);
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
-    /// Trims the imported video from startTime to endTime
+    /// Trims the imported video from startTime to endTime.
     /// </summary>
     /// <param name="startTime">When the trimmed video will start.</param>
     /// <param name="endTime">When the trimmed video will the end.</param>
-    public void Trim(TimeSpan startTime, TimeSpan endTime)
+    public BooleanResponse Trim(TimeSpan startTime, TimeSpan endTime)
     {
+        if (TimeSpanIsOutOfBounds(startTime))
+            return OutOfBoundsResponse(nameof(startTime));
+        
+        if (TimeSpanIsOutOfBounds(endTime))
+            return OutOfBoundsResponse(nameof(endTime));
+
+        if (startTime >= endTime)
+            return BadStartTimeResponse();
+        
         _editor.Trim(InputPath, OutputPath, startTime, endTime);
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
     /// Mute the imported video.
     /// Note: There is no unmute operation yet.
     /// </summary>
-    public void Mute()
+    public BooleanResponse Mute()
     {
         _editor.Mute(InputPath, OutputPath);
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
@@ -110,19 +144,24 @@ public class VideoEditor
     /// Only some types are supported.
     /// </summary>
     /// <param name="newExtension">The extension of the output video type.</param>
-    public void Convert(IEditor.Extension newExtension)
+    public BooleanResponse Convert(IEditor.Extension newExtension)
     {
-        // TODO: output path should have new extension instead of old extension
         _editor.Convert(InputPath, OutputPath, newExtension);
+
+        _outputExtension = newExtension;
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
     /// Creates a gif from the imported video.
     /// </summary>
-    public void ConvertToGif()
+    public BooleanResponse ConvertToGif()
     {
-        _gifCreator.CaptureGif(InputPath, OutputPath, new Size(-1, -1), 
+        _gifCreator.CaptureGif(InputPath, OutputPath, new Size(-1, -1),
             TimeSpan.Zero, _footage.Duration, TimeSpan.Zero);
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
@@ -134,19 +173,40 @@ public class VideoEditor
     /// <param name="endTime">When in the input video the gif will end.</param>
     /// <param name="duration">The duration of the gif (will be sped up or slowed down to fit).
     /// Use TimeSpan.Zero for the default duration (without changes in speed).</param>
-    public void CaptureGif(TimeSpan startTime, TimeSpan endTime, TimeSpan duration, Size? widthHeight = null)
+    public BooleanResponse CaptureGif(TimeSpan startTime, TimeSpan endTime, TimeSpan duration, 
+        Size? widthHeight = null)
     {
+        if (TimeSpanIsOutOfBounds(startTime))
+            return OutOfBoundsResponse(nameof(startTime));
+        
+        if (TimeSpanIsOutOfBounds(endTime))
+            return OutOfBoundsResponse(nameof(endTime));
+        
+        if (TimeSpanIsOutOfBounds(duration))
+            return OutOfBoundsResponse(nameof(duration));
+        
+        if (startTime >= endTime)
+            return BadStartTimeResponse();
+        
         widthHeight ??= new Size(-1, -1);
-        _gifCreator.CaptureGif(InputPath, OutputPath, (Size)widthHeight, startTime, endTime, duration);
+        _gifCreator.CaptureGif(InputPath, OutputPath, (Size)widthHeight, startTime, endTime, 
+            duration);
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
     /// Compresses the input video down to the given size in KB.
     /// </summary>
     /// /// <param name="maxKilobytes">The maximum size of the output video in KB.</param>
-    public void CompressDownTo(long maxKilobytes)
+    public BooleanResponse CompressDownTo(long maxKilobytes)
     {
+        if (maxKilobytes < 1)
+            return new BooleanResponse(false, "Cannot compress down to less than 1 KB");
+        
         _compressor.Compress(InputPath, OutputPath, maxKilobytes);
+        
+        return BooleanResponse.Successful;
     }
 
     /// <summary>
@@ -155,12 +215,44 @@ public class VideoEditor
     /// </summary>
     /// <param name="compressionFactor">Smaller compression factors tell FFMpeg to compress
     /// the video further. This value must be greater than 0 and less than 1.</param>
-    public void CompressBy(float compressionFactor)
+    public BooleanResponse CompressBy(float compressionFactor)
     {
         // 0 < compressionFactor < 1
         compressionFactor = Math.Max(compressionFactor, float.Epsilon);
         compressionFactor = Math.Min(compressionFactor, 1.0f - float.Epsilon);
-        
+
         _compressor.Compress(InputPath, OutputPath, compressionFactor);
+        
+        return BooleanResponse.Successful;
     }
+    
+    /// <param name="span">The time span to test.</param>
+    /// <returns>True if the given time span is out of bounds.</returns>
+    private bool TimeSpanIsOutOfBounds(TimeSpan span)
+    {
+        if (span > _footage.Duration)
+            return true;
+        
+        if (span < TimeSpan.Zero)
+            return true;
+
+        return false;
+    }
+    
+    /// <param name="paramName">The name of the parameter that was out of bounds.</param>
+    /// <returns>A standard response for out of bounds parameters.</returns>
+    private static BooleanResponse OutOfBoundsResponse(string paramName)
+    {
+        var response = new BooleanResponse(false, $"{paramName} is out of bounds)");
+        return response;
+    }
+    
+    /// <returns>
+    /// A standard response for start times that are after the end time.
+    /// </returns>
+    private static BooleanResponse BadStartTimeResponse()
+    {
+        return new BooleanResponse(false, "Start time must be before end time.");
+    }
+
 }
