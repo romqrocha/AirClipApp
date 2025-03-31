@@ -1,9 +1,16 @@
 ﻿using System.Diagnostics.CodeAnalysis;
-using Moq;
 using VideoEditor;
 
 namespace UnitTestAirClipApp;
 
+/// <summary>
+/// Tests the Video class.
+/// </summary>
+/// <resources>
+/// The <see href="https://learn.microsoft.com/en-us/dotnet/core/testing/unit-testing-best-practices">
+/// Microsoft .NET guidelines </see> were consulted in writing these unit tests.
+/// </resources>
+/// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 [Collection("Important Tests")]
 [SuppressMessage("ReSharper", "ConvertToLocalFunction")]
 public class UnitTestsVideo
