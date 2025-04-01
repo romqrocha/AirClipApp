@@ -55,9 +55,9 @@ public interface IEditor
     /// </summary>
     public enum Extension
     {
-        Mp4, 
-        Mov, 
-        WebM, 
+        mp4, 
+        mov, 
+        webm, 
     }
 
     public static string ExtToString(Extension extension) => 

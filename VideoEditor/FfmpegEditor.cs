@@ -70,9 +70,9 @@ public class FfmpegEditor : IEditor, IGifCreator, ICompressor
         {
             return extension switch
             {
-                IEditor.Extension.Mp4 => VideoType.Mp4,
-                IEditor.Extension.Mov => VideoType.Mov,
-                IEditor.Extension.WebM => VideoType.WebM,
+                IEditor.Extension.mp4 => VideoType.Mp4,
+                IEditor.Extension.mov => VideoType.Mov,
+                IEditor.Extension.webm => VideoType.WebM,
                 _ => throw new ArgumentOutOfRangeException(nameof(extension), extension, 
                     "Invalid extension.")
             };

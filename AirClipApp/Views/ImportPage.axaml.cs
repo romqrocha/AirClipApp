@@ -48,7 +48,7 @@ public partial class ImportPage : UserControl
             ImportStatus.Text = $"The video file is not valid. Try again.";
             return;
         }
-
+        
         MainWindowViewModel.Video = new Video(videoPath);
         if (Parent is ContentControl parent)
         {
