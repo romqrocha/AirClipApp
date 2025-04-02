@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VideoEditor", "VideoEditor\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AirClipCCL", "AirClipCCL\AirClipCCL.csproj", "{F3E943C4-2A6B-491C-8EC2-032D319C600A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LibVLCSharp.Avalonia.Unofficial", "LibVLCSharp.Avalonia.Unofficial\LibVLCSharp.Avalonia.Unofficial.csproj", "{0EE9679E-DE82-47E8-AFA6-1997FBF49D59}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{F3E943C4-2A6B-491C-8EC2-032D319C600A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3E943C4-2A6B-491C-8EC2-032D319C600A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3E943C4-2A6B-491C-8EC2-032D319C600A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EE9679E-DE82-47E8-AFA6-1997FBF49D59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EE9679E-DE82-47E8-AFA6-1997FBF49D59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EE9679E-DE82-47E8-AFA6-1997FBF49D59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EE9679E-DE82-47E8-AFA6-1997FBF49D59}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
