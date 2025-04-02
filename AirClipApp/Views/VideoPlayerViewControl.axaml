@@ -1,0 +1,53 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vlcsharp="clr-namespace:LibVLCSharp.Avalonia.Unofficial;assembly=LibVLCSharp.Avalonia.Unofficial"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="AirClipApp.Views.VideoPlayerViewControl">
+
+    <Grid RowDefinitions="*" ColumnDefinitions="*" VerticalAlignment="Center">
+        <!-- Player Panel -->
+        <Panel
+            Grid.Row="0"
+            Margin="0"
+            Background="Transparent"
+            Name="MpContainer"
+            IsVisible="False"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center">
+
+            
+            <vlcsharp:VideoView
+                x:Name="VideoViewer"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Stretch">
+                
+            </vlcsharp:VideoView>
+            
+        </Panel>
+
+        <!-- Thumbnail Panel -->
+        <Panel
+            Grid.Row="0"
+            Margin="0"
+            IsVisible="True"
+            HorizontalAlignment="Stretch"
+            VerticalAlignment="Center">
+            <Border
+                CornerRadius="0"
+                ClipToBounds="True">
+                <Panel
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center">
+                    <Image
+                        Stretch="Uniform" />
+                    <Panel IsVisible="True">
+                        <PathIcon Height="75" Width="75" 
+                                  Data="{StaticResource PlayCircleRegular}" />
+                    </Panel>
+                </Panel>
+            </Border>
+        </Panel>
+    </Grid>
+</UserControl>

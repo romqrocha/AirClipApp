@@ -3,10 +3,12 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:views="clr-namespace:AirClipCCL.Views;assembly=AirClipCCL"
+             xmlns:viewsAlt="clr-namespace:AirClipApp.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipApp.Views.EditorPage">
     <!-- Dockpanel is a layout container that arranges child elements along edges then fills remaining space. -->
     <DockPanel>
+        
         <StackPanel DockPanel.Dock="Left" Width="200" Background="LightGray">
             <TextBlock Text="Edit Tools" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
             <views:ScrollableSelectionRow/>
@@ -16,12 +18,18 @@
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Timeline" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
             </StackPanel>
+            
         </ScrollViewer>
 
-        <StackPanel Background="Black">
-            <TextBlock Text="Preview" FontSize="16" HorizontalAlignment="Center" Foreground="White" FontWeight="Bold"/>
-            <Button Content="Action 1"/>
-            <Button Content="Action 2"/>
+        <StackPanel Background="MidnightBlue" VerticalAlignment="Stretch">
+            <TextBlock Text="Preview" FontSize="16" HorizontalAlignment="Center" 
+                       Foreground="White" FontWeight="Bold"/>
+            <viewsAlt:VideoPlayerViewControl Name="Player" 
+                                             VerticalAlignment="Center"
+                                             Height="280"
+                                             />
         </StackPanel>
+        
     </DockPanel>
+    
 </UserControl>

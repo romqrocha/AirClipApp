@@ -11,7 +11,7 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        PageContent.Content = new HomePage(); // Show Home page when the app starts
+        PageContent.Content = new EditorPage(); // Show Home page when the app starts TODO
     }
 
     

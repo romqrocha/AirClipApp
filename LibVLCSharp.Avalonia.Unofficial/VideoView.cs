@@ -104,7 +104,7 @@ public class VideoView : NativeControlHost
         
     private void InitializeNativeOverlay()
     {
-        if (!((IVisual)this).IsAttachedToVisualTree) return;            
+        if (!this.IsAttachedToVisualTree()) return;            
 
         if (_floatingContent == null && Content != null)            
         {
@@ -114,7 +114,7 @@ public class VideoView : NativeControlHost
             {
                 SystemDecorations = SystemDecorations.None,
                     
-                TransparencyLevelHint = WindowTransparencyLevel.Transparent,                    
+                TransparencyLevelHint = [WindowTransparencyLevel.Transparent],                    
                 Background = Brushes.Transparent,                                        
                     
                 SizeToContent = SizeToContent.WidthAndHeight,
@@ -129,8 +129,8 @@ public class VideoView : NativeControlHost
                     
             };
                                 
-            _floatingContent.PointerEnter += Controls_PointerEnter;
-            _floatingContent.PointerLeave += Controls_PointerLeave;
+            _floatingContent.PointerEntered += Controls_PointerEnter;
+            _floatingContent.PointerExited += Controls_PointerLeave;
 
 
             if (VisualRoot != null)
@@ -273,7 +273,7 @@ public class VideoView : NativeControlHost
 
         InitializeNativeOverlay();
 
-        _isEffectivelyVisible = this.GetVisualAncestors().OfType<IControl>()
+        _isEffectivelyVisible = this.GetVisualAncestors().OfType<Control>()
             .Select(v => v.GetObservable(IsVisibleProperty))
             .CombineLatest(v => v.All(o => o))
             .DistinctUntilChanged()
