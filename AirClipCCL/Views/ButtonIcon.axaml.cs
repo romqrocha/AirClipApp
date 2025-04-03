@@ -1,6 +1,7 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Controls.Primitives;
+using Avalonia.Media;
 
 namespace AirClipCCL.Views;
 
@@ -30,6 +31,17 @@ public class ButtonIcon : TemplatedControl
     {
         get => GetValue(HandleClickProperty);
         set => SetValue(HandleClickProperty, value);
+    }
+    #endregion
+    
+    #region IconGeometry
+    public static readonly StyledProperty<StreamGeometry> IconGeometryProperty =
+        AvaloniaProperty.Register<ButtonIcon, StreamGeometry>(nameof(IconGeometry));
+
+    public StreamGeometry IconGeometry
+    {
+        get => GetValue(IconGeometryProperty);
+        set => SetValue(IconGeometryProperty, value);
     }
     #endregion
 }

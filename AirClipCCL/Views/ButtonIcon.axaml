@@ -14,10 +14,10 @@
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
                             Spacing="5">
                     <Button Width="50" Height="50" Command="{TemplateBinding HandleClick}">
-                        <PathIcon Data="{StaticResource CutRegular}"></PathIcon>
+                        <PathIcon Data="{TemplateBinding IconGeometry}"></PathIcon>
                     </Button>
                     <TextBlock Text="{TemplateBinding IconLabel}" HorizontalAlignment="Center" 
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center" FontSize="11"/>
                 </StackPanel>
             </ControlTemplate>
         </Setter>

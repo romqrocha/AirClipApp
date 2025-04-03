@@ -4,17 +4,20 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:AirClipCCL.ViewModels"
              xmlns:views="clr-namespace:AirClipCCL.Views"
+             xmlns:models="clr-namespace:AirClipCCL.Models"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipCCL.Views.ScrollableSelectionRow"
              x:DataType="viewModels:ScrollableSelectionRowViewModel">
     <ScrollViewer HorizontalScrollBarVisibility="Visible">
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" 
                     Spacing="20" Orientation="Horizontal">
-            <views:ButtonIcon IconLabel="Cut"/>
-            <views:ButtonIcon IconLabel="Cut"/>
-            <views:ButtonIcon IconLabel="Cut"/>
-            <views:ButtonIcon IconLabel="Cut"/>
-            <views:ButtonIcon IconLabel="Cut"/>
+            <views:ButtonIcon IconLabel="Trim" IconGeometry="{StaticResource CutRegular}"/>
+            <views:ButtonIcon IconLabel="Capture" IconGeometry="{x:Static models:Icons.TakePhoto}"/>
+            <views:ButtonIcon IconLabel="Merge" IconGeometry="{x:Static models:Icons.AddNew}"/>
+            <views:ButtonIcon IconLabel="Mute" IconGeometry="{x:Static models:Icons.SoundOff}"/>
+            <views:ButtonIcon IconLabel="Convert" IconGeometry="{x:Static models:Icons.Change}"/>
+            <views:ButtonIcon IconLabel="Gif" IconGeometry="{x:Static models:Icons.Gif}"/>
+            <views:ButtonIcon IconLabel="Compress" IconGeometry="{x:Static models:Icons.Shrinking}"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

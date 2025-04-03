@@ -30,35 +30,34 @@ public partial class VideoPlayerViewControlModel : ObservableObject
     
     public VideoPlayerViewControlModel()
     {
-        var isDebugging = true;
+        const bool isDebugging = false;
+
+        if (Avalonia.Controls.Design.IsDesignMode) 
+            return;
         
-        if (!Avalonia.Controls.Design.IsDesignMode)
+        var libVlcDirectoryPath = Path.Combine(Environment.CurrentDirectory, 
+            "libvlc", "win-x64");
+
+        Core.Initialize(libVlcDirectoryPath);
+        _libVLC = new LibVLC(enableDebugLogs: isDebugging, "--avcodec-hw=any");
+
+        if (isDebugging)
+            _libVLC.Log += VlcLogger_Event;
+
+        //MediaPlayer = new MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
+        MediaPlayer = new MediaPlayer(_libVLC)
         {
-            var libVlcDirectoryPath = Path.Combine(Environment.CurrentDirectory, 
-                "libvlc", "win-x64");
+            Fullscreen = true,
+            //EnableMouseInput = false,
+            //Scale = 1
+        };
 
-            Core.Initialize(libVlcDirectoryPath);
-            _libVLC = new LibVLC(enableDebugLogs: isDebugging, "--avcodec-hw=any");
+        MediaPlayer.TimeChanged += MediaPlayer_TimeChanged;
+        MediaPlayer.Playing += MediaPlayer_Playing;
+        MediaPlayer.EndReached += MediaPlayer_EndReached;
+        MediaPlayer.Vout += MediaPlayer_VideoOut;
 
-            if (isDebugging)
-                _libVLC.Log += VlcLogger_Event;
-
-            //MediaPlayer = new MediaPlayer(_libVLC) { EnableHardwareDecoding = true };
-            MediaPlayer = new MediaPlayer(_libVLC)
-            {
-                Fullscreen = true,
-                //EnableMouseInput = false,
-                //Scale = 1
-            };
-
-            MediaPlayer.TimeChanged += MediaPlayer_TimeChanged;
-            MediaPlayer.Playing += MediaPlayer_Playing;
-            MediaPlayer.EndReached += MediaPlayer_EndReached;
-            MediaPlayer.Vout += MediaPlayer_VideoOut;
-
-            IsStopped = false;
-
-        }
+        IsStopped = false;
     }
 
     /// <summary>
