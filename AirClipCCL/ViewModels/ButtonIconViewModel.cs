@@ -5,6 +5,10 @@ using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AirClipCCL.ViewModels;
 
+/// <summary>
+/// View Model for ButtonIcon
+/// </summary>
+/// <authors>Rodrigo Rocha</authors>
 public partial class ButtonIconViewModel : ObservableObject
 {
     [ObservableProperty] private Action _handleClick = () => {};

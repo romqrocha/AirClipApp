@@ -2,19 +2,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:AirClipApp.ViewModels"
              xmlns:views="clr-namespace:AirClipCCL.Views;assembly=AirClipCCL"
              xmlns:viewsAlt="clr-namespace:AirClipApp.Views"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AirClipApp.Views.EditorPage">
+             x:Class="AirClipApp.Views.EditorPage"
+             x:DataType="viewModels:MainWindowViewModel">
     <!-- Dockpanel is a layout container that arranges child elements along edges then fills remaining space. -->
     <DockPanel>
         
-        <Panel DockPanel.Dock="Left" Width="200" Background="LightGray">
-            <Border Width="200" Height="120" VerticalAlignment="Top" HorizontalAlignment="Stretch"
-                    BorderBrush="Gray" BorderThickness="0.5">
+        <DockPanel DockPanel.Dock="Left" Width="200" Background="LightGray">
+            <Border DockPanel.Dock="Top" Width="200" Height="120" VerticalAlignment="Top" 
+                    HorizontalAlignment="Stretch" BorderBrush="Gray" BorderThickness="0.5">
                 <views:ScrollableSelectionRow></views:ScrollableSelectionRow>
             </Border>
-        </Panel>
+            <Border Width="200" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    BorderBrush="Gray" BorderThickness="0.5" Child="{Binding EditingDetailsControl}">
+            </Border>
+        </DockPanel>
         
         <ScrollViewer DockPanel.Dock="Bottom" HorizontalScrollBarVisibility="Auto" Height="100"
                       Background="Azure">
@@ -27,11 +32,6 @@
                                          VerticalAlignment="Stretch"
                                          HorizontalAlignment="Stretch"
         />
-        <!--<StackPanel VerticalAlignment="Stretch">
-            <TextBlock Text="Preview" FontSize="16" HorizontalAlignment="Center" 
-                        FontWeight="Bold"/>
-            
-        </StackPanel>-->
         
     </DockPanel>
     

@@ -13,7 +13,8 @@
             <ControlTemplate>
                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center"
                             Spacing="5">
-                    <Button Width="50" Height="50" Command="{TemplateBinding HandleClick}">
+                    <Button Width="50" Height="50" Command="{TemplateBinding HandleClick}"
+                            CommandParameter="{TemplateBinding IconLabel}">
                         <PathIcon Data="{TemplateBinding IconGeometry}"></PathIcon>
                     </Button>
                     <TextBlock Text="{TemplateBinding IconLabel}" HorizontalAlignment="Center" 

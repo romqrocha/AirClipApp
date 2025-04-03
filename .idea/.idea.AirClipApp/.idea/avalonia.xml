@@ -17,6 +17,7 @@
         <entry key="AirClipCCL/Views/ButtonIcon.axaml" value="AirClipCCL/AirClipCCL.csproj" />
         <entry key="AirClipCCL/Views/MainWindow.axaml" value="AirClipCCL/AirClipCCL.csproj" />
         <entry key="AirClipCCL/Views/ScrollableSelectionRow.axaml" value="AirClipCCL/AirClipCCL.csproj" />
+        <entry key="AirClipCCL/Views/TrimDetails.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipControls/App.axaml" value="AirClipControls/AirClipControls.csproj" />
         <entry key="AirClipControls/ButtonIcon.axaml" value="AirClipControls/AirClipControls.csproj" />
         <entry key="AirClipControls/MainWindow.axaml" value="AirClipControls/AirClipControls.csproj" />

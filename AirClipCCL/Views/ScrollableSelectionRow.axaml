@@ -11,13 +11,20 @@
     <ScrollViewer HorizontalScrollBarVisibility="Visible">
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" 
                     Spacing="20" Orientation="Horizontal">
-            <views:ButtonIcon IconLabel="Trim" IconGeometry="{StaticResource CutRegular}"/>
-            <views:ButtonIcon IconLabel="Capture" IconGeometry="{x:Static models:Icons.TakePhoto}"/>
-            <views:ButtonIcon IconLabel="Merge" IconGeometry="{x:Static models:Icons.AddNew}"/>
-            <views:ButtonIcon IconLabel="Mute" IconGeometry="{x:Static models:Icons.SoundOff}"/>
-            <views:ButtonIcon IconLabel="Convert" IconGeometry="{x:Static models:Icons.Change}"/>
-            <views:ButtonIcon IconLabel="Gif" IconGeometry="{x:Static models:Icons.Gif}"/>
-            <views:ButtonIcon IconLabel="Compress" IconGeometry="{x:Static models:Icons.Shrinking}"/>
+            <views:ButtonIcon IconLabel="Trim" IconGeometry="{StaticResource CutRegular}"
+                              HandleClick="{Binding SetSelectedButtonCommand}"/>
+            <views:ButtonIcon IconLabel="Capture" IconGeometry="{x:Static models:Icons.TakePhoto}"
+                              HandleClick="{Binding SetSelectedButtonCommand}"/>
+            <views:ButtonIcon IconLabel="Merge" IconGeometry="{x:Static models:Icons.AddNew}"
+                              HandleClick="{Binding SetSelectedButtonCommand}"/>
+            <views:ButtonIcon IconLabel="Mute" IconGeometry="{x:Static models:Icons.SoundOff}"
+                              HandleClick="{Binding SetSelectedButtonCommand}"/>
+            <views:ButtonIcon IconLabel="Convert" IconGeometry="{x:Static models:Icons.Change}"
+                              HandleClick="{Binding SetSelectedButtonCommand}"/>
+            <views:ButtonIcon IconLabel="Gif" IconGeometry="{x:Static models:Icons.Gif}"
+                              HandleClick="{Binding SetSelectedButtonCommand}"/>
+            <views:ButtonIcon IconLabel="Compress" IconGeometry="{x:Static models:Icons.Shrinking}"
+                              HandleClick="{Binding SetSelectedButtonCommand}"/>
         </StackPanel>
     </ScrollViewer>
 </UserControl>

@@ -1,4 +1,8 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+﻿using AirClipCCL.Views;
+using Avalonia.Controls;
+using Avalonia.Media;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using VideoEditor;
 
 namespace AirClipApp.ViewModels;
@@ -9,11 +13,20 @@ namespace AirClipApp.ViewModels;
 /// any user control that's a child of the main window.
 /// </summary>
 /// <authors> Rodrigo Rocha, Taeyang Seo </authors>
-public class MainWindowViewModel : ObservableObject
+public partial class MainWindowViewModel : ObservableObject
 {
+    
     public static FfmpegEditor? FfmpegEditor { get; set; }
 
     public static Video? Video { get; set; }
 
     public static VideoEditor.VideoEditor? VideoEditor { get; set; }
+
+    [ObservableProperty] private Control _editingDetailsControl = new Panel();
+    
+    [RelayCommand]
+    public void ChangeDetailsControl()
+    {
+        EditingDetailsControl = new TrimDetails();
+    }
 }

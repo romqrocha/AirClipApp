@@ -1,15 +1,16 @@
-﻿using System;
+﻿using System.Windows.Input;
 using Avalonia;
 using Avalonia.Controls.Primitives;
 using Avalonia.Media;
 
 namespace AirClipCCL.Views;
 
-/**
- * This is Avalonia UI's more complex version of a Custom Control
- * I followed this tutorial to learn more about it:
- * https://medium.com/@adamciszewski/avalonia-user-vs-templated-control-code-examples-b05301baf3c0
- */
+/// <summary>
+/// This is Avalonia UI's more complex version of a custom control (templated control).
+/// I followed <see href="https://medium.com/@adamciszewski/avalonia-user-vs-templated-control-code-examples-b05301baf3c0">
+/// this tutorial </see> to learn more about it. 
+/// </summary>
+/// <authors>Rodrigo Rocha</authors>
 public class ButtonIcon : TemplatedControl
 {
     #region IconLabel
@@ -24,10 +25,10 @@ public class ButtonIcon : TemplatedControl
     #endregion
     
     #region HandleClick
-    public static readonly StyledProperty<Action> HandleClickProperty =
-        AvaloniaProperty.Register<ButtonIcon, Action>(nameof(HandleClick));
+    public static readonly StyledProperty<ICommand> HandleClickProperty =
+        AvaloniaProperty.Register<ButtonIcon, ICommand>(nameof(HandleClick));
 
-    public Action HandleClick
+    public ICommand HandleClick
     {
         get => GetValue(HandleClickProperty);
         set => SetValue(HandleClickProperty, value);

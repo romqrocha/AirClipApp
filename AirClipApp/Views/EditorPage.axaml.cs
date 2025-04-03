@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using AirClipApp.ViewModels;
 using Avalonia.Controls;
 
 namespace AirClipApp.Views;
