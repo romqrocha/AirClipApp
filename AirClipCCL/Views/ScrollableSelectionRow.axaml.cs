@@ -11,9 +11,11 @@ namespace AirClipCCL.Views;
 /// <authors>Rodrigo Rocha</authors>
 public partial class ScrollableSelectionRow : UserControl
 {
+    public ScrollableSelectionRowViewModel ViewModel { get; } = new();
+    
     public ScrollableSelectionRow()
     {
         InitializeComponent();
-        DataContext = new ScrollableSelectionRowViewModel();
+        DataContext = ViewModel;
     }
 }

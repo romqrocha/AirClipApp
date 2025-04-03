@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using AirClipCCL.Views;
 using Avalonia.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -12,6 +13,7 @@ namespace AirClipCCL.ViewModels;
 /// View Model for ScrollableSelectionRow
 /// </summary>
 /// <authors>Rodrigo Rocha</authors>
+[SuppressMessage("ReSharper", "ConvertSwitchStatementToSwitchExpression")]
 public partial class ScrollableSelectionRowViewModel : ObservableObject
 {
     public event Action<UserControl>? SelectedButtonChanged;

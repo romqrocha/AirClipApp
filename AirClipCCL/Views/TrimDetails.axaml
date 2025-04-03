@@ -4,14 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipCCL.Views.TrimDetails">
-    <StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Start Time"/>
-            <TextBox Width="40" Height="20"/>
+    <StackPanel Margin="5">
+        <StackPanel Orientation="Horizontal" Spacing="10" Margin="5">
+            <TextBlock Text="Start Time" VerticalAlignment="Center"/>
+            <TextBox FontSize="10" MinHeight="1"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
-            <TextBlock Text="End Time"/>
-            <TextBox Width="40" Height="20"/>
+        <StackPanel Orientation="Horizontal" Spacing="10" Margin="5">
+            <TextBlock Text="End Time" VerticalAlignment="Center"/>
+            <TextBox FontSize="10" MinHeight="1"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

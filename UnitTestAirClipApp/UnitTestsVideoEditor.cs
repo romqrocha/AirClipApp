@@ -21,7 +21,6 @@ public class UnitTestsVideoEditor
     The following path is the default path for a ffmpeg installation from chocolatey:
         @"C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\";
     */
-
     
     /// <returns>
     /// A mock video editor object.

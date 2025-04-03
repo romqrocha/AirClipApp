@@ -13,13 +13,14 @@
     <!-- Dockpanel is a layout container that arranges child elements along edges then fills remaining space. -->
     <DockPanel>
         
-        <DockPanel DockPanel.Dock="Left" Width="200" Background="LightGray">
-            <Border DockPanel.Dock="Top" Width="200" Height="120" VerticalAlignment="Top" 
+        <DockPanel DockPanel.Dock="Left" Width="300" Background="LightGray">
+            <Border DockPanel.Dock="Top" Width="300" Height="120" VerticalAlignment="Top" 
                     HorizontalAlignment="Stretch" BorderBrush="Gray" BorderThickness="0.5">
                 <views:ScrollableSelectionRow Name="SelectionRow"/>
             </Border>
-            <Border Width="200" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                    BorderBrush="Gray" BorderThickness="0.5" Child="{Binding ActiveEditingDetailsControl}">
+            <Border Width="300" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                    BorderBrush="Gray" BorderThickness="0.5" 
+                    Child="{Binding ActiveEditingDetailsControl}">
             </Border>
         </DockPanel>
         
@@ -30,11 +31,8 @@
             </StackPanel>
         </ScrollViewer>
         
-        <viewsAlt:VideoPlayerViewControl Name="Player" 
-                                         VerticalAlignment="Stretch"
-                                         HorizontalAlignment="Stretch"
-        />
-        
+        <viewsAlt:VideoPlayerViewControl Name="Player" VerticalAlignment="Stretch"
+                                         HorizontalAlignment="Stretch"/>
     </DockPanel>
     
 </UserControl>

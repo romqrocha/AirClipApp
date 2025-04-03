@@ -10,7 +10,7 @@
              x:DataType="viewModels:ScrollableSelectionRowViewModel">
     <ScrollViewer HorizontalScrollBarVisibility="Visible">
         <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" 
-                    Spacing="20" Orientation="Horizontal">
+                    Spacing="20" Orientation="Horizontal" Margin="20, 0">
             <views:ButtonIcon IconLabel="Trim" IconGeometry="{StaticResource CutRegular}"
                               HandleClick="{Binding SetSelectedButtonCommand}"/>
             <views:ButtonIcon IconLabel="Capture" IconGeometry="{x:Static models:Icons.TakePhoto}"

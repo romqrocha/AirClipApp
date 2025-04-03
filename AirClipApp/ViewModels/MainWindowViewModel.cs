@@ -25,7 +25,8 @@ public partial class MainWindowViewModel : ObservableObject
     public static Pages Pages { get; } = new Pages();
     
     [ObservableProperty] private UserControl _activePage = Pages.HomePage;
-    [RelayCommand] public void SetActivePage(UserControl page) 
+    [RelayCommand]
+    private void SetActivePage(UserControl page) 
         => ActivePage = page;
     
     #endregion
@@ -138,6 +139,36 @@ public partial class MainWindowViewModel : ObservableObject
     [ObservableProperty] private string _importStatus = 
         "";
     
+    [RelayCommand]
+    private async Task ValidateImport()
+    {
+        var topLevel = TopLevel.GetTopLevel(Pages.ImportPage);
+        if (topLevel is null)
+            return;
+
+        ImportStatus = "Importing...";
+        string videoPath = await ImportFromFileSystem(topLevel);
+        
+        // Removes the first 7 characters of the path because they make the path invalid.
+        // Must make sure the video path string is not empty before calling Substring, otherwise
+        // it will crash the program.
+        if (!string.IsNullOrEmpty(videoPath))
+        {
+            videoPath = videoPath.Substring(8);    
+        }
+        ImportStatus = $"Importing '{videoPath}' ...";
+
+        if (!IsVideoPathValid(videoPath))
+        {
+            ImportStatus = "The video file is not valid. Try again.";
+            return;
+        }
+        
+        Video = new Video(videoPath);
+        SetActivePage(Pages.EditorPage);
+        Pages.EditorPage.SubscribeToSelectedButtonChanged(SetDetailsControl);
+    }
+    
     /// <summary>
     /// A filter that specifies the video formats that are allowed when
     /// selecting the video file.
@@ -181,35 +212,6 @@ public partial class MainWindowViewModel : ObservableObject
         string videoPath = files[0].Path.ToString();
         return videoPath;
     }
-    
-    [RelayCommand]
-    private async Task ValidateImport()
-    {
-        var topLevel = TopLevel.GetTopLevel(Pages.ImportPage);
-        if (topLevel is null)
-            return;
-
-        ImportStatus = "Importing...";
-        string videoPath = await ImportFromFileSystem(topLevel);
-        
-        // Removes the first 7 characters of the path because they make the path invalid.
-        // Must make sure the video path string is not empty before calling Substring, otherwise
-        // it will crash the program.
-        if (!string.IsNullOrEmpty(videoPath))
-        {
-            videoPath = videoPath.Substring(8);    
-        }
-        ImportStatus = $"Importing '{videoPath}' ...";
-
-        if (!IsVideoPathValid(videoPath))
-        {
-            ImportStatus = "The video file is not valid. Try again.";
-            return;
-        }
-        
-        Video = new Video(videoPath);
-        SetActivePage(Pages.EditorPage);
-    }
 
     /// <summary>
     /// Checks if the given path exists.
@@ -225,15 +227,15 @@ public partial class MainWindowViewModel : ObservableObject
     
     #region EditorPage
     
-    [ObservableProperty] private Control _activeEditingDetailsControl = new Panel();
-    [RelayCommand] public void SetDetailsControl() 
-        => ActiveEditingDetailsControl = new TrimDetails();
+    [ObservableProperty] private Control _activeEditingDetailsControl = new TrimDetails();
+    
+    private void SetDetailsControl(UserControl detailsControl) 
+        => ActiveEditingDetailsControl = detailsControl;
     
     public static FfmpegEditor? FfmpegEditor { get; set; }
     public static Video? Video { get; set; }
     public static VideoEditor.VideoEditor? VideoEditor { get; set; }
     
     #endregion
-    
     
 }

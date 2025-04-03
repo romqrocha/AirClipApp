@@ -80,12 +80,17 @@ public class Video
         Duration = videoStream.Duration;
     }
 
+    /// <summary>
+    /// Mock constructor for unit testing.
+    /// </summary>
+    /// <remarks>
+    /// Don't use this outside of testing purposes.
+    /// </remarks>
+    // ReSharper disable once UnusedMember.Global
     public Video()
     {
         VideoFile = new FileInfo("C:");
         Path = "";
         Extension = "";
     }
-    
-    
 }

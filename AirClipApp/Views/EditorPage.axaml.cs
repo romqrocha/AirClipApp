@@ -1,3 +1,4 @@
+using System;
 using Avalonia.Controls;
 
 namespace AirClipApp.Views;
@@ -16,5 +17,10 @@ public partial class EditorPage : UserControl
     public EditorPage()
     {
         InitializeComponent();
+    }
+
+    public void SubscribeToSelectedButtonChanged(Action<UserControl> action)
+    {
+        SelectionRow.ViewModel.SelectedButtonChanged += action;
     }
 }

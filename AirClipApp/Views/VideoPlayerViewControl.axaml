@@ -16,7 +16,6 @@
         IsVisible="True"
         HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
-
         
         <vlcsharp:VideoView
             x:Name="VideoViewer"
@@ -27,7 +26,6 @@
                           VerticalAlignment="Center" Data="{StaticResource PlayCircleRegular}" />
             </Button>
         </vlcsharp:VideoView>
-        
     </Panel>
         
         
