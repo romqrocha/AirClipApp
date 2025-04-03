@@ -5,15 +5,21 @@
              xmlns:viewmodels="clr-namespace:AirClipApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipApp.Views.EnterPathPage"
-             x:DataType="viewmodels:EnterPathPageViewModel">
+             x:DataType="viewmodels:MainWindowViewModel">
     <StackPanel Margin="20">
         <TextBlock Margin="0 5" Text="{Binding FfmpegPathPrompt}"/>
         <!-- <TextBox Name="FfmpegPathTextBox" Watermark="{Binding ChocolateyPathExample}"/> -->
-        <TextBox Name="FfmpegPathTextBox" Text="/opt/homebrew/Cellar/ffmpeg/7.1.1_1/bin/"/>
+        <!-- <TextBox Name="FfmpegPathTextBox" Text="/opt/homebrew/Cellar/ffmpeg/7.1.1_1/bin/"/> -->
+        <TextBox Name="FfmpegPathTextBox" Text="{Binding InputtedFfmpegPath}"/>
         <TextBlock Margin="0 5" Text="{Binding TempFilesPathPrompt}"/>
+        
         <!-- <TextBox Name="TempFilesPathTextBox" Watermark="{Binding TempFilesPathExample}"/> -->
-        <TextBox Name="TempFilesPathTextBox" Text="/Users/danielseo/Downloads/temp_files"/>
-        <Button Margin="0 5" Click="OnSubmit" Content="Submit"/>
+        <!-- <TextBox Name="TempFilesPathTextBox" Text="/Users/danielseo/Downloads/temp_files"/> -->
+        <TextBox Name="TempFilesPathTextBox" Text="{Binding InputtedTempPath}"/>
+        
+        <Button Margin="0, 5" Content="Submit" 
+                Command="{Binding VerifyPathsCommand}"
+                CommandParameter="{Binding Pages.ImportPage}"/>
         <TextBlock Name="ErrorText" Margin="0 10" Text=""/>
     </StackPanel>
 </UserControl>

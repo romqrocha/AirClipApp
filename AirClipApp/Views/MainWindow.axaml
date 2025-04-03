@@ -19,6 +19,6 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
     
-    <ContentControl Name="PageContent"/>
+    <ContentControl Name="PageContent" Content="{Binding ActivePage}"/>
     
 </Window>

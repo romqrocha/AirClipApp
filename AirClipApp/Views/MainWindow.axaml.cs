@@ -1,4 +1,8 @@
+using System.Diagnostics;
+using AirClipCCL.ViewModels;
+using AirClipCCL.Views;
 using Avalonia.Controls;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AirClipApp.Views;
 
@@ -11,7 +15,13 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        PageContent.Content = new EditorPage(); // Show Home page when the app starts TODO
+        
+        /*
+        var row = ActivePage.FindControl<ScrollableSelectionRow>("SelectionRow");
+        var rowDataContext = row?.DataContext;
+        if (rowDataContext is not ScrollableSelectionRowViewModel rowViewModel)
+            return;
+        */
     }
 
     

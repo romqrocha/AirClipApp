@@ -16,49 +16,11 @@ namespace AirClipApp.Views;
 /// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class ImportPage : UserControl
 {
-    private ImportPageViewModel ViewModel { get; } 
-    
     public ImportPage()
     {
         InitializeComponent();
-        ViewModel = new ImportPageViewModel();
-        DataContext = ViewModel;
     }
 
     // Get rid of async keyword?
-    public async void OnImport(object? sender, RoutedEventArgs e)
-    {
-        var topLevel = TopLevel.GetTopLevel(this);
-        if (topLevel is null)
-            return;
-        
-        string videoPath = await ViewModel.ImportFromFileSystem(topLevel);
-        
-        // Removes the first 7 characters of the path because they make the path invalid.
-        // Must make sure the video path string is not empty before calling Substring, otherwise
-        // it will crash the program.
-        if (!string.IsNullOrEmpty(videoPath))
-        {
-            videoPath = videoPath.Substring(7);    
-        }
-        ImportStatus.Text = $"Importing '{videoPath}' ...";
-
-        if (!IsVideoPathValid(videoPath))
-        {
-            ImportStatus.Text = $"The video file is not valid. Try again.";
-            return;
-        }
-        
-        MainWindowViewModel.Video = new Video(videoPath);
-        if (Parent is ContentControl parent)
-        {
-            parent.Content = new EditorPage();
-        }
-    }
-
-    // Method to validate video path. Might want to move this to ImportPageViewModel
-    private bool IsVideoPathValid(string videoPath)
-    {
-        return File.Exists(videoPath);
-    }
+    
 }

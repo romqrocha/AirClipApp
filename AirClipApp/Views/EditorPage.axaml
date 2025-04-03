@@ -14,10 +14,10 @@
         <DockPanel DockPanel.Dock="Left" Width="200" Background="LightGray">
             <Border DockPanel.Dock="Top" Width="200" Height="120" VerticalAlignment="Top" 
                     HorizontalAlignment="Stretch" BorderBrush="Gray" BorderThickness="0.5">
-                <views:ScrollableSelectionRow></views:ScrollableSelectionRow>
+                <views:ScrollableSelectionRow Name="SelectionRow"/>
             </Border>
             <Border Width="200" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                    BorderBrush="Gray" BorderThickness="0.5" Child="{Binding EditingDetailsControl}">
+                    BorderBrush="Gray" BorderThickness="0.5" Child="{Binding ActiveEditingDetailsControl}">
             </Border>
         </DockPanel>
         

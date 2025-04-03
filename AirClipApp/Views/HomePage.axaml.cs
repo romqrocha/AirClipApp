@@ -1,3 +1,5 @@
+using System;
+using System.Diagnostics;
 using AirClipApp.ViewModels;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
@@ -17,14 +19,5 @@ public partial class HomePage : UserControl
     public HomePage()
     {
         InitializeComponent();
-        DataContext = new HomePageViewModel();
-    }
-    private void OnGetStartedClick(object? sender, RoutedEventArgs e)
-    {
-        if (Parent is ContentControl contentControl)
-        {
-            // Main Window's ContentControl becomes EnterPathPage
-            contentControl.Content = new EnterPathPage();
-        }
     }
 }

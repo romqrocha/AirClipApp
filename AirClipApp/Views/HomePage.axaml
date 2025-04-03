@@ -5,10 +5,12 @@
              xmlns:viewmodels="clr-namespace:AirClipApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipApp.Views.HomePage"
-             x:DataType="viewmodels:HomePageViewModel">
+             x:DataType="viewmodels:MainWindowViewModel">
     
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
         <TextBlock FontSize="30" HorizontalAlignment="Center" Text="Welcome to AirClip"/>
-        <Button HorizontalAlignment="Center" Content="Get Started" Click="OnGetStartedClick"/>
+        <Button HorizontalAlignment="Center" Content="Get Started" 
+                Command="{Binding SetActivePageCommand}"
+                CommandParameter="{Binding Pages.EnterPathPage}"/>
     </StackPanel>
 </UserControl>

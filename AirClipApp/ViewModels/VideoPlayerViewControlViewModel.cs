@@ -22,13 +22,13 @@ namespace AirClipApp.ViewModels;
 /// </see> to create this.
 /// </resources>
 /// <authors> Rodrigo Rocha, Taeyang Seo </authors>
-public partial class VideoPlayerViewControlModel : ObservableObject
+public partial class VideoPlayerViewControlViewModel : ObservableObject
 {
     private static HttpClient httpClient = new();
     private readonly LibVLC _libVLC;
     public MediaPlayer MediaPlayer { get; }
     
-    public VideoPlayerViewControlModel()
+    public VideoPlayerViewControlViewModel()
     {
         const bool isDebugging = false;
 

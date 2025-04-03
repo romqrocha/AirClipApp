@@ -17,7 +17,7 @@ namespace AirClipApp.Views;
 /// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class VideoPlayerViewControl : UserControl
 {
-    public readonly VideoPlayerViewControlModel ViewModel = new VideoPlayerViewControlModel();
+    public readonly VideoPlayerViewControlViewModel ViewViewModel = new VideoPlayerViewControlViewModel();
     private static VideoPlayerViewControl? _this;
 
     //public Panel mpContainer;
@@ -39,7 +39,7 @@ public partial class VideoPlayerViewControl : UserControl
 
         _this = this;
 
-        DataContext = ViewModel;
+        DataContext = ViewViewModel;
 
         _videoViewer = this.Get<VideoView>("VideoViewer");
     }
@@ -57,19 +57,19 @@ public partial class VideoPlayerViewControl : UserControl
     public void SetPlayerHandle()
     {
         // TODO: pass a real path to StartPlay instead of a test path
-        bool testing = false;
+        bool testing = true;
         if (!testing)
             return;
         
         if (_videoViewer == null) 
             return;
             
-        _videoViewer.MediaPlayer = ViewModel.MediaPlayer;
+        _videoViewer.MediaPlayer = ViewViewModel.MediaPlayer;
         _videoViewer.MediaPlayer.Hwnd = _videoViewer.Handle.Handle;
         //string mrl = new Uri(@"C:\Users\16046\Videos\Mockumentary\2.MP4").AbsoluteUri;
-        ViewModel.StartPlay("17.mov");
+        ViewViewModel.StartPlay("2.MP4");
 
-        ViewModel.IsStopped = true;
+        ViewViewModel.IsStopped = true;
     }
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)

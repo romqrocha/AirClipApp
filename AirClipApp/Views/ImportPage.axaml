@@ -5,11 +5,12 @@
              xmlns:viewmodels="clr-namespace:AirClipApp.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipApp.Views.ImportPage"
-             x:DataType="viewmodels:ImportPageViewModel">
+             x:DataType="viewmodels:MainWindowViewModel">
     
     <StackPanel Margin="20">
         <TextBlock Margin="0 5" Text="{Binding ImportPrompt}"/>
-        <Button Margin="0 5" Click="OnImport" Content="Import Video"/>
+        <Button Margin="0 5" Command="{Binding ValidateImportCommand}" 
+                Content="Import Video"/>
         <TextBlock Name="ImportStatus" Margin="0 5" Text="{Binding ImportStatus}"/>
     </StackPanel>
 </UserControl>

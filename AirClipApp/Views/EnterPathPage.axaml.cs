@@ -20,15 +20,12 @@ public partial class EnterPathPage : UserControl
 {
     // FFmpeg path: /opt/homebrew/Cellar/ffmpeg/7.1.1_1/bin/
     // Temp files path: /Users/danielseo/Downloads/temp_files
-    private EnterPathPageViewModel Data { get; }
 
     public EnterPathPage()
     {
         InitializeComponent();
-        Data = new EnterPathPageViewModel();
-        DataContext = Data;
-        
     }
+    /*
     public void OnSubmit(object? sender, RoutedEventArgs e)
     {
         if (string.IsNullOrWhiteSpace(FfmpegPathTextBox.Text) || string.IsNullOrWhiteSpace(TempFilesPathTextBox.Text))
@@ -60,20 +57,8 @@ public partial class EnterPathPage : UserControl
         }
 
     }
+    */
     
-    // Method that checks if the path is valid (might want to move this to EnterPathPageViewModel)
-    private bool IsPathValid(string inputtedFfmpegPath)
-    {
-        if (!Directory.Exists(inputtedFfmpegPath)) return false;
-        
-        DirectoryInfo ffmpegDirectory = new DirectoryInfo(inputtedFfmpegPath);
-        bool ffmpegExists = File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffmpeg.exe")) ||
-                            File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffmpeg")); 
-
-        bool ffprobeExists = File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffprobe.exe")) ||
-                             File.Exists(Path.Combine(ffmpegDirectory.FullName, "ffprobe"));
-
-        return ffmpegExists && ffprobeExists;
-    }
+    
 
 }
