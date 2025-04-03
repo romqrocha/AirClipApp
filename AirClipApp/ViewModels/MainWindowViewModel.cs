@@ -77,7 +77,11 @@ public partial class MainWindowViewModel : ObservableObject
             ErrorText = "The temporary directory you have entered is not valid.";
             return;
         }
+        
         ErrorText = "";
+        FfmpegEditor = new FfmpegEditor(new DirectoryInfo(InputtedFfmpegPath),
+            new DirectoryInfo(InputtedTempPath));
+        
         SetActivePage(Pages.ImportPage);
     }
     

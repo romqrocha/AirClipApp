@@ -1,8 +1,4 @@
-﻿using System.IO;
-using AirClipApp.ViewModels;
-using Avalonia.Controls;
-using Avalonia.Interactivity;
-using VideoEditor;
+﻿using Avalonia.Controls;
 
 namespace AirClipApp.Views;
 
@@ -20,7 +16,4 @@ public partial class ImportPage : UserControl
     {
         InitializeComponent();
     }
-
-    // Get rid of async keyword?
-    
 }

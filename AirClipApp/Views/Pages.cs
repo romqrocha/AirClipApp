@@ -1,5 +1,9 @@
 ﻿namespace AirClipApp.Views;
 
+/// <summary>
+/// UserControl objects for each page owned by the Main Window.
+/// </summary>
+/// <authors>Rodrigo Rocha, Taeyang Seo</authors>
 public class Pages
 {
     public static HomePage HomePage { get; } = new HomePage();

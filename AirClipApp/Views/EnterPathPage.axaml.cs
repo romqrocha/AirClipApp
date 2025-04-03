@@ -1,9 +1,4 @@
-using AirClipApp.ViewModels;
 using Avalonia.Controls;
-using Avalonia.Interactivity;
-using System.IO;
-using System.Diagnostics;
-using VideoEditor;
 
 namespace AirClipApp.Views;
 
@@ -25,40 +20,4 @@ public partial class EnterPathPage : UserControl
     {
         InitializeComponent();
     }
-    /*
-    public void OnSubmit(object? sender, RoutedEventArgs e)
-    {
-        if (string.IsNullOrWhiteSpace(FfmpegPathTextBox.Text) || string.IsNullOrWhiteSpace(TempFilesPathTextBox.Text))
-        {
-            ErrorText.Text = "Please enter a path before submitting.";
-            return;
-        }
-        
-        ErrorText.Text = "";
-        Data.InputtedFfmpegPath = FfmpegPathTextBox.Text;
-        Data.InputtedTempFilesPath = TempFilesPathTextBox.Text;
-
-        // Instantiate an FfmpegEditor
-        if (IsPathValid(Data.InputtedFfmpegPath))
-        {
-            MainWindowViewModel.FfmpegEditor = new FfmpegEditor(new DirectoryInfo(Data.InputtedFfmpegPath),
-                new DirectoryInfo(Data.InputtedTempFilesPath));
-            
-        }
-        else
-        {
-            ErrorText.Text = "The path you have entered is not valid. Try again.";
-            return;
-        }
-        
-        if (Parent is ContentControl contentControl)
-        {
-            contentControl.Content = new ImportPage();
-        }
-
-    }
-    */
-    
-    
-
 }
