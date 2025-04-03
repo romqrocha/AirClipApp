@@ -6,28 +6,30 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipApp.Views.VideoPlayerViewControl">
 
-    <Grid RowDefinitions="*" ColumnDefinitions="*" VerticalAlignment="Center">
-        <!-- Player Panel -->
-        <Panel
-            Grid.Row="0"
-            Margin="0"
-            Background="Transparent"
-            Name="MpContainer"
-            IsVisible="False"
-            HorizontalAlignment="Stretch"
-            VerticalAlignment="Center">
+    
+    <!-- Player Panel -->
+    <Panel
+        Background="Transparent"
+        Name="MpContainer"
+        IsVisible="True"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
 
-            
-            <vlcsharp:VideoView
-                x:Name="VideoViewer"
-                VerticalAlignment="Center"
-                HorizontalAlignment="Stretch">
-                
-            </vlcsharp:VideoView>
-            
-        </Panel>
-
-        <!-- Thumbnail Panel -->
+        
+        <vlcsharp:VideoView
+            x:Name="VideoViewer"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch">
+            <Button Click="Button_OnClick" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <PathIcon Height="75" Width="75" Foreground="White" HorizontalAlignment="Center"
+                          VerticalAlignment="Center" Data="{StaticResource PlayCircleRegular}" />
+            </Button>
+        </vlcsharp:VideoView>
+        
+    </Panel>
+        
+        
+        <!-- Thumbnail Panel 
         <Panel
             Grid.Row="0"
             Margin="0"
@@ -43,11 +45,10 @@
                     <Image
                         Stretch="Uniform" />
                     <Panel IsVisible="True">
-                        <PathIcon Height="75" Width="75" 
-                                  Data="{StaticResource PlayCircleRegular}" />
+                        
                     </Panel>
                 </Panel>
+                
             </Border>
-        </Panel>
-    </Grid>
+        </Panel>-->
 </UserControl>

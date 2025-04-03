@@ -20,15 +20,15 @@
             </StackPanel>
             
         </ScrollViewer>
-
-        <StackPanel Background="MidnightBlue" VerticalAlignment="Stretch">
+        <viewsAlt:VideoPlayerViewControl Name="Player" 
+                                         VerticalAlignment="Stretch"
+                                         HorizontalAlignment="Stretch"
+        />
+        <!--<StackPanel VerticalAlignment="Stretch">
             <TextBlock Text="Preview" FontSize="16" HorizontalAlignment="Center" 
-                       Foreground="White" FontWeight="Bold"/>
-            <viewsAlt:VideoPlayerViewControl Name="Player" 
-                                             VerticalAlignment="Center"
-                                             Height="280"
-                                             />
-        </StackPanel>
+                        FontWeight="Bold"/>
+            
+        </StackPanel>-->
         
     </DockPanel>
     

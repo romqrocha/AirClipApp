@@ -55,7 +55,7 @@ namespace AirClipApp.Views
             _videoViewer.MediaPlayer = ViewModel.MediaPlayer;
             _videoViewer.MediaPlayer.Hwnd = _videoViewer.Handle.Handle;
             //string mrl = new Uri(@"C:\Users\16046\Videos\Mockumentary\2.MP4").AbsoluteUri;
-            ViewModel.StartPlay("2.MP4");
+            ViewModel.StartPlay("17.mov");
 
             ViewModel.IsStopped = true;
         }
