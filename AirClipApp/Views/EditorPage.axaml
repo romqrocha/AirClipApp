@@ -9,17 +9,20 @@
     <!-- Dockpanel is a layout container that arranges child elements along edges then fills remaining space. -->
     <DockPanel>
         
-        <StackPanel DockPanel.Dock="Left" Width="200" Background="LightGray">
-            <TextBlock Text="Edit Tools" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
-            <views:ScrollableSelectionRow/>
-        </StackPanel>
+        <Panel DockPanel.Dock="Left" Width="200" Background="LightGray">
+            <Border Width="200" Height="120" VerticalAlignment="Top" HorizontalAlignment="Stretch"
+                    BorderBrush="Gray" BorderThickness="0.5">
+                <views:ScrollableSelectionRow></views:ScrollableSelectionRow>
+            </Border>
+        </Panel>
         
-        <ScrollViewer DockPanel.Dock="Bottom" HorizontalScrollBarVisibility="Auto" Height="100">
+        <ScrollViewer DockPanel.Dock="Bottom" HorizontalScrollBarVisibility="Auto" Height="100"
+                      Background="Azure">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Timeline" FontSize="16" HorizontalAlignment="Center" FontWeight="Bold"/>
             </StackPanel>
-            
         </ScrollViewer>
+        
         <viewsAlt:VideoPlayerViewControl Name="Player" 
                                          VerticalAlignment="Stretch"
                                          HorizontalAlignment="Stretch"

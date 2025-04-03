@@ -7,9 +7,13 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="AirClipCCL.Views.ScrollableSelectionRow"
              x:DataType="viewModels:ScrollableSelectionRowViewModel">
-    <ScrollViewer>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="20" 
-                    Orientation="Horizontal">
+    <ScrollViewer HorizontalScrollBarVisibility="Visible">
+        <StackPanel HorizontalAlignment="Stretch" VerticalAlignment="Center" 
+                    Spacing="20" Orientation="Horizontal">
+            <views:ButtonIcon IconLabel="Cut"/>
+            <views:ButtonIcon IconLabel="Cut"/>
+            <views:ButtonIcon IconLabel="Cut"/>
+            <views:ButtonIcon IconLabel="Cut"/>
             <views:ButtonIcon IconLabel="Cut"/>
         </StackPanel>
     </ScrollViewer>
