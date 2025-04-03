@@ -14,6 +14,14 @@ using AirClipApp.Views;
 
 namespace AirClipApp.ViewModels;
 
+/// <summary>
+/// View Model for VideoPlayerViewControl
+/// </summary>
+/// <resources>
+/// Followed the example at <see href="https://github.com/radiolondra/YAMP2">
+/// </see> to create this.
+/// </resources>
+/// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class VideoPlayerViewControlModel : ObservableObject
 {
     private static HttpClient httpClient = new();
