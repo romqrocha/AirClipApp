@@ -23,7 +23,7 @@ public class Video
     public string Extension { get; }
     
     /** Detailed info about this video's properties (use FFprobe for this) */
-    private IMediaAnalysis MediaInfo { get; set; }
+    private IMediaAnalysis? MediaInfo { get; set; }
 
     /** Use FFProbe.Analyse(filePath) for this */
     public int Width { get; }
@@ -78,6 +78,13 @@ public class Video
         Height = videoStream.Height;
         Fps = videoStream.FrameRate;
         Duration = videoStream.Duration;
+    }
+
+    public Video()
+    {
+        VideoFile = new FileInfo("C:");
+        Path = "";
+        Extension = "";
     }
     
     

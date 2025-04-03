@@ -24,7 +24,7 @@ public class VideoEditor
 
     /** Absolute path to the final output file. */
     private string OutputPath => Path.Join(_outputDirectory?.FullName, 
-        $"{_outputFileName}{IEditor.ExtToString((IEditor.Extension)_outputExtension)}");
+        $"{_outputFileName}{IEditor.ExtToString(_outputExtension ?? IEditor.Extension.Mp4)}");
 
     /// <summary>
     /// Standard constructor for VideoEditor.

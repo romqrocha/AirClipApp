@@ -58,16 +58,14 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;&#xD;
   &lt;Assembly Path="C:\Users\16046\.nuget\packages\ffmpegcore\5.1.0\lib\netstandard2.0\FFMpegCore.dll" /&gt;&#xD;
 &lt;/AssemblyExplorer&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=4b79732c_002Def28_002D42b5_002Dac7c_002D8c3a84af1a15/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="NewVideo_InvalidPath #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;xUnit::C9DE40C3-143E-49C6-98C0-E818724B4838::net9.0::UnitTestAirClipApp.UnitTestsVideo.NewVideo_InvalidPath&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b81fc984_002D732f_002D433a_002D9524_002Da59543ed9aee/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="NewVideo_InvalidPath" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=b33e5700_002D4fa9_002D46e9_002Db452_002D258405eab755/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="UnitTestsVideo" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
   &lt;TestAncestor&gt;&#xD;
     &lt;TestId&gt;xUnit::C9DE40C3-143E-49C6-98C0-E818724B4838::net9.0::UnitTestAirClipApp.UnitTestsVideo&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::C9DE40C3-143E-49C6-98C0-E818724B4838::net9.0::UnitTestAirClipApp.UnitTestsVideoEditor&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String>
+	
+	
 	
 	
 	
