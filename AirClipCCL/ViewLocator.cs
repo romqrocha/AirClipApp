@@ -1,7 +1,7 @@
 using System;
 using Avalonia.Controls;
 using Avalonia.Controls.Templates;
-using AirClipCCL.ViewModels;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace AirClipCCL;
 
@@ -25,6 +25,6 @@ public class ViewLocator : IDataTemplate
 
     public bool Match(object? data)
     {
-        return data is ViewModelBase;
+        return data is ObservableObject;
     }
 }

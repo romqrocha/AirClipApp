@@ -1,6 +1,5 @@
-﻿namespace AirClipCCL.ViewModels;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
-public partial class MainWindowViewModel : ViewModelBase
-{
-    public string Greeting { get; } = "Welcome to Avalonia!";
-}
+namespace AirClipCCL.ViewModels;
+
+public class MainWindowViewModel : ObservableObject;

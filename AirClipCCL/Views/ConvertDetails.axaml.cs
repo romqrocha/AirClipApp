@@ -3,12 +3,12 @@ using Avalonia.Controls;
 
 namespace AirClipCCL.Views;
 
-public partial class TrimDetails : UserControl
+public partial class ConvertDetails : UserControl
 {
     /// <summary> View Model for this Control </summary>
     public OperationDetailsViewModel ViewModel { get; } = new OperationDetailsViewModel();
     
-    public TrimDetails()
+    public ConvertDetails()
     {
         InitializeComponent();
         DataContext = ViewModel;

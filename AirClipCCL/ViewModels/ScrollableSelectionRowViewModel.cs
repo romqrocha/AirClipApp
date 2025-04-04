@@ -25,11 +25,23 @@ public partial class ScrollableSelectionRowViewModel : ObservableObject
         switch (value)
         {
             case SelectableButtons.Capture:
+                control = new CaptureDetails();
+                break;
             case SelectableButtons.Merge:
+                control = new MergeDetails();
+                break;
             case SelectableButtons.Mute:
+                control = new MuteDetails();
+                break;
             case SelectableButtons.Convert:
+                control = new ConvertDetails();
+                break;
             case SelectableButtons.Gif:
+                control = new GifDetails();
+                break;
             case SelectableButtons.Compress:
+                control = new CompressDetails();
+                break;
             case SelectableButtons.Trim:
                 control = new TrimDetails();
                 break;

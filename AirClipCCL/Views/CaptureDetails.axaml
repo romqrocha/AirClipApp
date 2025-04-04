@@ -4,23 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:viewModels="clr-namespace:AirClipCCL.ViewModels"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-             x:Class="AirClipCCL.Views.TrimDetails"
-             x:DataType="viewModels:OperationDetailsViewModel">
-    <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE-->
-        <viewModels:OperationDetailsViewModel/>
-    </Design.DataContext>
-    
+             x:DataType="viewModels:OperationDetailsViewModel"
+             x:Class="AirClipCCL.Views.CaptureDetails">
     <StackPanel Margin="5">
         <StackPanel Orientation="Horizontal" Spacing="10" Margin="5">
-            <TextBlock Text="Start Time:" VerticalAlignment="Center"/>
+            <TextBlock Text="Capture Time:" VerticalAlignment="Center"/>
             <TextBox FontSize="10" MinHeight="1" Text="{Binding StartTimeInput}"/>
             <TextBlock Text="s" VerticalAlignment="Center"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Spacing="10" Margin="5">
-            <TextBlock Text="End Time:" VerticalAlignment="Center"/>
-            <TextBox FontSize="10" MinHeight="1" Text="{Binding EndTimeInput}"/>
-            <TextBlock Text="s" VerticalAlignment="Center"/>
+            <TextBlock Text="Width:" VerticalAlignment="Center"/>
+            <TextBox FontSize="10" MinHeight="1" Text="{Binding WidthInput}"/>
+            <TextBlock Text="px" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="10" Margin="5">
+            <TextBlock Text="Height:" VerticalAlignment="Center"/>
+            <TextBox FontSize="10" MinHeight="1" Text="{Binding HeightInput}"/>
+            <TextBlock Text="px" VerticalAlignment="Center"/>
         </StackPanel>
     </StackPanel>
 </UserControl>

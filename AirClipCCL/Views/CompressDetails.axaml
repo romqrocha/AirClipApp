@@ -1,0 +1,21 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:viewModels="clr-namespace:AirClipCCL.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:DataType="viewModels:OperationDetailsViewModel"
+             x:Class="AirClipCCL.Views.CompressDetails">
+    <StackPanel Margin="5">
+        <StackPanel Orientation="Horizontal" Spacing="10" Margin="5">
+            <TextBlock Text="Output Size:" VerticalAlignment="Center"/>
+            <TextBox FontSize="10" MinHeight="1" Text="{Binding SizeInMbInput}"/>
+            <TextBlock Text="MB" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Spacing="10" Margin="5">
+            <TextBlock Text="Compression Level:" VerticalAlignment="Center"/>
+            <TextBox FontSize="10" MinHeight="1" Text="{Binding CompressionLevelInput}"/>
+            <TextBlock Text="%" VerticalAlignment="Center"/>
+        </StackPanel>
+    </StackPanel>
+</UserControl>
