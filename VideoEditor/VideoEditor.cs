@@ -26,10 +26,10 @@ public class VideoEditor
     
     public Video Footage { get; private set; }
 
-    public IEditor.Extension OutputExtension { get; set; }
+    public IEditor.Extension OutputExtension { get; private set; }
 
-    private const string OriginalKey = "!ogO408";
-    private const string EditedKey = "!ed0408";
+    private const string OriginalKey = "og0408";
+    private const string EditedKey = "ed0408";
     
     /// <summary>
     /// Standard constructor for VideoEditor.
@@ -63,6 +63,7 @@ public class VideoEditor
         var newLocation = OutputPath.Replace(EditedKey, OriginalKey);
         File.Copy(Footage.AbsPath, newLocation, true);
         Footage = new Video(newLocation);
+        CurrentVideoPath = newLocation.Substring(newLocation.LastIndexOf('\\') + 1);
 
         if (!outputDirectory.Exists)
         {
@@ -70,6 +71,11 @@ public class VideoEditor
         }
 
     }
+    
+    /// <summary>
+    /// Hack for getting the latest edit from the VideoPlayer.
+    /// </summary>
+    public static string? CurrentVideoPath { get; private set; }
 
     /// <summary>
     /// Move the video from the edited location to the original location.
@@ -79,6 +85,7 @@ public class VideoEditor
         var newLocation = OutputPath.Replace(EditedKey, OriginalKey);
         File.Move(OutputPath, newLocation, true);
         Footage = new Video(newLocation);
+        CurrentVideoPath = newLocation.Substring(newLocation.LastIndexOf('\\') + 1);
     }
 
     public void Export(string finalPath)

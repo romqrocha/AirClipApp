@@ -24,7 +24,6 @@ namespace AirClipApp.ViewModels;
 /// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class VideoPlayerViewControlViewModel : ObservableObject
 {
-    private static HttpClient httpClient = new();
     private readonly LibVLC _libVLC;
     public MediaPlayer MediaPlayer { get; }
     
@@ -77,8 +76,6 @@ public partial class VideoPlayerViewControlViewModel : ObservableObject
     /// <param name="e"></param>
     private void MediaPlayer_VideoOut(object? sender, MediaPlayerVoutEventArgs e)
     {
-        IsStopped = false; // Needed to show player over still image
-
         MediaPlayer.Volume = 50;
         //Debug.WriteLine($"*** VOUT *** => XVolume={VideoPlayerView.ControlsView.viewModel.XVolume} MPvolume={MediaPlayer.Volume}");
     }
@@ -90,7 +87,10 @@ public partial class VideoPlayerViewControlViewModel : ObservableObject
     /// <param name="e"></param>
     private void MediaPlayer_EndReached(object? sender, EventArgs e)
     {
-        MediaPlayer.Stop();
+        MediaPlayer.Pause();
+        PlayerIsExiting();
+        MediaPlayer.SeekTo(TimeSpan.Zero);
+        MediaPlayer.Play();
     }
 
     /// <summary>
@@ -182,59 +182,10 @@ public partial class VideoPlayerViewControlViewModel : ObservableObject
 
         }
         catch { }
-
-
     }        
-
-    private async void LoadCover(string coverUrl)
-    {
-        if (!String.IsNullOrWhiteSpace(coverUrl))
-        {
-            using (var imageStream = await LoadCoverBitmapAsync(coverUrl))
-            {
-                Cover = Bitmap.DecodeToWidth(imageStream, 400);
-            }
-        }
-    }
-
-    
-    private async Task<Stream> LoadCoverBitmapAsync(string coverUrl)
-    {
-        byte[] data;
-        try
-        {
-            data = await httpClient.GetByteArrayAsync(coverUrl);
-        }
-        catch (Exception ex)
-        {
-           // string assemblyPath = Utilities.ApplicationFolder();
-           //  data = ImageToByteArray(Path.Combine(assemblyPath, Settings.WeTubeImageNotAvailable));
-           data = await httpClient.GetByteArrayAsync(coverUrl);
-        }
-
-        return new MemoryStream(data);
-    }
-    
-    private static byte[] ImageToByteArray(string imageName)
-    {
-        //Initialize a file stream to read the image file
-        FileStream fs = new FileStream(imageName, FileMode.Open, FileAccess.Read);
-
-        //Initialize a byte array with size of stream
-        byte[] imgByteArr = new byte[fs.Length];
-
-        //Read data from the file stream and put into the byte array
-        fs.Read(imgByteArr, 0, Convert.ToInt32(fs.Length));
-
-        //Close a file stream
-        fs.Close();
-
-        return imgByteArr;
-    }
 
     public void PlayerIsExiting()
     {
-        //VideoPlayerViewControl.ControlsView.viewModel.Stop();
-        //Dispose();
+        Dispose();
     }
 }

@@ -56,20 +56,15 @@ public partial class VideoPlayerViewControl : UserControl
 
     public void SetPlayerHandle()
     {
-        // TODO: pass a real path to StartPlay instead of a test path
-        bool testing = true;
-        if (!testing)
-            return;
         
         if (_videoViewer == null) 
             return;
             
         _videoViewer.MediaPlayer = ViewViewModel.MediaPlayer;
         _videoViewer.MediaPlayer.Hwnd = _videoViewer.Handle.Handle;
-        //string mrl = new Uri(@"C:\Users\16046\Videos\Mockumentary\2.MP4").AbsoluteUri;
-        ViewViewModel.StartPlay("2.MP4");
 
-        ViewViewModel.IsStopped = true;
+        string path = VideoEditor.VideoEditor.CurrentVideoPath ?? "";
+        ViewViewModel.StartPlay(path == "" ? "" : @"TempVideos\" + path);
     }
 
     private void Button_OnClick(object? sender, RoutedEventArgs e)

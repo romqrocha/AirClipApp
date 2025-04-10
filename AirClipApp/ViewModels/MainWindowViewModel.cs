@@ -22,7 +22,6 @@ namespace AirClipApp.ViewModels;
 /// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class MainWindowViewModel : ObservableObject
 {
-    
     #region Pages
     
     /// <summary>
@@ -407,5 +406,4 @@ public partial class MainWindowViewModel : ObservableObject
     }
     
     #endregion
-    
 }
