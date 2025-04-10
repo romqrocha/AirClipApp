@@ -14,18 +14,19 @@ public class VideoEditor
     private readonly IGifCreator _gifCreator;
     private readonly ICompressor _compressor;
     
-    private DirectoryInfo _outputDirectory;
-    private string _outputFileName;
-    private IEditor.Extension _outputExtension;
+    private readonly DirectoryInfo _outputDirectory;
+    private readonly string _outputFileName;
 
     /** Absolute path to the imported video file. */
     private string InputPath => Footage.AbsPath;
 
     /** Absolute path to the final output file. */
     private string OutputPath => Path.Join(_outputDirectory.FullName, 
-        $"{_outputFileName + EditedKey}{IEditor.ExtToString(_outputExtension)}");
+        $"{_outputFileName + EditedKey}{IEditor.ExtToString(OutputExtension)}");
     
     public Video Footage { get; private set; }
+
+    public IEditor.Extension OutputExtension { get; set; }
 
     private const string OriginalKey = "!ogO408";
     private const string EditedKey = "!ed0408";
@@ -54,7 +55,7 @@ public class VideoEditor
         
         _outputDirectory = outputDirectory ?? new DirectoryInfo(video.AbsPath);
         _outputFileName = outputFileName;
-        _outputExtension = outputExtension;
+        OutputExtension = outputExtension;
 
         if (outputDirectory is null) 
             return;
@@ -76,8 +77,30 @@ public class VideoEditor
     public void CopyEditedToOriginal()
     {
         var newLocation = OutputPath.Replace(EditedKey, OriginalKey);
-        File.Copy(OutputPath, newLocation, true);
+        File.Move(OutputPath, newLocation, true);
         Footage = new Video(newLocation);
+    }
+
+    public void Export(string finalPath)
+    {
+        var finalVideoLocation = OutputPath.Replace(EditedKey, OriginalKey);
+        File.Copy(finalVideoLocation, finalPath, true);
+        DeleteTempFiles();
+    }
+
+    private void DeleteTempFiles()
+    {
+        DirectoryInfo? outputDir = new FileInfo(OutputPath).Directory;
+        if (outputDir is null)
+            return;
+        
+        foreach (var file in outputDir.GetFiles())
+        {
+            if (file.Name.Contains(EditedKey) || file.Name.Contains(OriginalKey))
+            {
+                file.Delete();
+            }
+        }
     }
 
     /// <summary>
@@ -175,7 +198,7 @@ public class VideoEditor
     {
         _editor.Convert(InputPath, OutputPath, newExtension);
 
-        _outputExtension = newExtension;
+        OutputExtension = newExtension;
         
         return BooleanResponse.Successful;
     }

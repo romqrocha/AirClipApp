@@ -367,6 +367,44 @@ public partial class MainWindowViewModel : ObservableObject
         }
         return res;
     }
+
+    /// <summary>
+    /// Saves the edited video file to the desired location.
+    /// </summary>
+    [RelayCommand]
+    private async Task Save()
+    {
+        var topLevel = TopLevel.GetTopLevel(Pages.EditorPage);
+        if (topLevel is null)
+            return;
+
+        string path = await SaveToFileSystem(topLevel);
+        
+        VideoEditor.Export(path);
+    }
+
+    /// <summary>
+    /// Prompts the user to save a file.
+    /// </summary>
+    /// <param name="topLevel">The TopLevel object of the app.</param>
+    /// <returns>The chosen save path.</returns>
+    private async Task<string> SaveToFileSystem(TopLevel topLevel)
+    {
+        var options = new FilePickerSaveOptions
+        {
+            Title = "Save As...",
+            DefaultExtension = IEditor.ExtToString(VideoEditor.OutputExtension),
+            FileTypeChoices = [VideoSupported, FilePickerFileTypes.ImageAll]
+        };
+        IStorageFile? file = await topLevel.StorageProvider.SaveFilePickerAsync(options);
+
+        if (file is null)
+            return string.Empty;
+
+        var fileInfo = new FileInfo(file.Path.AbsolutePath);
+        
+        return fileInfo.FullName;
+    }
     
     #endregion
     
