@@ -31,10 +31,9 @@ public class UnitTestsVideoEditor
         var mockEditor = new Mock<IEditor>();
         var mockGifCreator = new Mock<IGifCreator>();
         var mockCompressor = new Mock<ICompressor>();
-        var mockOutputDirectory = new Mock<DirectoryInfo>();
         
         VideoEditor.VideoEditor editor = new(mockVideo.Object, mockEditor.Object, 
-            mockGifCreator.Object, mockCompressor.Object, mockOutputDirectory.Object, 
+            mockGifCreator.Object, mockCompressor.Object, null, 
             "", IEditor.Extension.Mp4);
         
         return editor;

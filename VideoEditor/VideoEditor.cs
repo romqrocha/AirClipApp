@@ -44,7 +44,7 @@ public class VideoEditor
     /// <param name="outputFileName"></param>
     /// <param name="outputExtension"></param>
     public VideoEditor(Video video, IEditor editor, IGifCreator gifCreator, ICompressor compressor,
-        DirectoryInfo outputDirectory, string outputFileName, IEditor.Extension outputExtension)
+        DirectoryInfo? outputDirectory, string outputFileName, IEditor.Extension outputExtension)
     {
         Footage = video;
 
@@ -52,9 +52,12 @@ public class VideoEditor
         _gifCreator = gifCreator;
         _compressor = compressor;
         
-        _outputDirectory = outputDirectory;
+        _outputDirectory = outputDirectory ?? new DirectoryInfo(video.AbsPath);
         _outputFileName = outputFileName;
         _outputExtension = outputExtension;
+
+        if (outputDirectory is null) 
+            return;
         
         var newLocation = OutputPath.Replace(EditedKey, OriginalKey);
         File.Copy(Footage.AbsPath, newLocation, true);
@@ -64,6 +67,7 @@ public class VideoEditor
         {
             outputDirectory.Create();
         }
+
     }
 
     /// <summary>
