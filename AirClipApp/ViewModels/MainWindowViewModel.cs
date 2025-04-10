@@ -378,6 +378,8 @@ public partial class MainWindowViewModel : ObservableObject
             return;
 
         string path = await SaveToFileSystem(topLevel);
+        if (string.IsNullOrEmpty(path))
+            return;
         
         VideoEditor.Export(path);
     }

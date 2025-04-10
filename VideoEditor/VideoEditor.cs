@@ -203,7 +203,10 @@ public class VideoEditor
     /// <param name="newExtension">The extension of the output video type.</param>
     public BooleanResponse Convert(IEditor.Extension newExtension)
     {
-        _editor.Convert(InputPath, OutputPath, newExtension);
+        string oldExt = new FileInfo(OutputPath).Extension;
+        string newExt = IEditor.ExtToString(newExtension);
+        string output = OutputPath.Replace(oldExt, newExt);
+        _editor.Convert(InputPath, output, newExtension);
 
         OutputExtension = newExtension;
         
