@@ -1,13 +1,18 @@
 ﻿using AirClipCCL.ViewModels;
-using Avalonia.Controls;
 
 namespace AirClipCCL.Views;
 
-public partial class TrimDetails : UserControl
+public partial class TrimDetails : OperationDetailsControl
 {
-    /// <summary> View Model for this Control </summary>
-    public OperationDetailsViewModel ViewModel { get; } = new OperationDetailsViewModel();
-    
+    /// <inheritdoc/>
+    public override EditOperation OperationType => EditOperation.Trim;
+
+    public override void OnPerformOperation()
+    {
+        ViewModel.ParseStartTime();
+        ViewModel.ParseEndTime();
+    }
+
     public TrimDetails()
     {
         InitializeComponent();

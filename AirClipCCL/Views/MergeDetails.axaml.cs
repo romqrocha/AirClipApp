@@ -1,13 +1,19 @@
 ﻿using AirClipCCL.ViewModels;
-using Avalonia.Controls;
 
 namespace AirClipCCL.Views;
 
-public partial class MergeDetails : UserControl
+public partial class MergeDetails : OperationDetailsControl
 {
-    /// <summary> View Model for this Control </summary>
-    public OperationDetailsViewModel ViewModel { get; } = new OperationDetailsViewModel();
-    
+    /// <inheritdoc/>
+    public override EditOperation OperationType => EditOperation.Merge;
+
+    /// <inheritdoc/>
+    public override void OnPerformOperation()
+    {
+        ViewModel.ParseVideoPath();
+        
+    }
+
     public MergeDetails()
     {
         InitializeComponent();

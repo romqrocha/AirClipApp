@@ -38,27 +38,31 @@ public class FfmpegEditor : IEditor, IGifCreator, ICompressor
         });
     }
     
-    
+    /// <inheritdoc/>
     public void CaptureImage(string input, string output, Size widthHeight, TimeSpan captureTime)
     {
         FFMpeg.Snapshot(input, output, widthHeight, captureTime);
     }
 
+    /// <inheritdoc/>
     public void Join(string[] inputs, string output)
     {
         FFMpeg.Join(output, inputs);
     }
 
+    /// <inheritdoc/>
     public void Trim(string input, string output, TimeSpan startTime, TimeSpan endTime)
     {
         FFMpeg.SubVideo(input, output, startTime, endTime);
     }
     
+    /// <inheritdoc/>
     public void Mute(string input, string output)
     {
         FFMpeg.Mute(input, output);
     }
 
+    /// <inheritdoc/>
     public void Convert(string input, string output, IEditor.Extension newExtension)
     {
         ContainerFormat newFormat = ExtToType(newExtension);
@@ -77,8 +81,9 @@ public class FfmpegEditor : IEditor, IGifCreator, ICompressor
                     "Invalid extension.")
             };
         }
-}
+    }
 
+    /// <inheritdoc/>
     public void CaptureGif(string input, string output, Size widthHeight, 
         TimeSpan startTime, TimeSpan endTime, TimeSpan duration)
     {
@@ -88,12 +93,14 @@ public class FfmpegEditor : IEditor, IGifCreator, ICompressor
         // TODO: speed up or slow down gif according to given duration
     }
 
+    /// <inheritdoc/>
     public void Compress(string input, string output, long maxKilobytes)
     {
         throw new NotImplementedException();
         // TODO: compress video until video size is less than maxKilobytes
     }
 
+    /// <inheritdoc/>
     public void Compress(string input, string output, float compressionFactor)
     {
         throw new NotImplementedException();

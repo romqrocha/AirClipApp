@@ -22,6 +22,7 @@
         <entry key="AirClipCCL/Views/MainWindow.axaml" value="AirClipCCL/AirClipCCL.csproj" />
         <entry key="AirClipCCL/Views/MergeDetails.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipCCL/Views/MuteDetails.axaml" value="AirClipApp/AirClipApp.csproj" />
+        <entry key="AirClipCCL/Views/OperationDetailsControl.axaml" value="AirClipApp/AirClipApp.csproj" />
         <entry key="AirClipCCL/Views/ScrollableSelectionRow.axaml" value="AirClipCCL/AirClipCCL.csproj" />
         <entry key="AirClipCCL/Views/TrimDetails.axaml" value="AirClipCCL/AirClipCCL.csproj" />
         <entry key="AirClipControls/App.axaml" value="AirClipControls/AirClipControls.csproj" />

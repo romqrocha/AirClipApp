@@ -1,7 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 using AirClipApp.Views;
+using AirClipCCL.ViewModels;
 using AirClipCCL.Views;
 using Avalonia.Controls;
 using Avalonia.Platform.Storage;
@@ -17,6 +22,7 @@ namespace AirClipApp.ViewModels;
 /// <authors> Rodrigo Rocha, Taeyang Seo </authors>
 public partial class MainWindowViewModel : ObservableObject
 {
+    
     #region Pages
     
     /// <summary>
@@ -46,11 +52,13 @@ public partial class MainWindowViewModel : ObservableObject
     private const string ChocolateyPathExample =
         @"C:\ProgramData\chocolatey\lib\ffmpeg\tools\ffmpeg\bin\";
     
+    private static readonly string _DefaultTempDirectory = GetAssemblyPath() + @"\Temp";
+    
     [ObservableProperty] private string _inputtedFfmpegPath = 
         ChocolateyPathExample;
 
-    [ObservableProperty] private string _inputtedTempPath = 
-        GetAssemblyPath();
+    [ObservableProperty] private string _inputtedTempPath =
+        _DefaultTempDirectory;
     
     /// <returns>
     /// The absolute path to the current assembly.
@@ -67,6 +75,12 @@ public partial class MainWindowViewModel : ObservableObject
     [RelayCommand]
     private void VerifyPaths()
     {
+        var tempDirInfo = new DirectoryInfo(_DefaultTempDirectory);
+        if (!tempDirInfo.Exists)
+        {
+            tempDirInfo.Create();
+        }
+        
         if (!IsFfmpegPathValid(InputtedFfmpegPath))
         {
             ErrorText = "The ffmpeg path you have entered is not valid. " +
@@ -80,8 +94,6 @@ public partial class MainWindowViewModel : ObservableObject
         }
         
         ErrorText = "";
-        FfmpegEditor = new FfmpegEditor(new DirectoryInfo(InputtedFfmpegPath),
-            new DirectoryInfo(InputtedTempPath));
         
         SetActivePage(Pages.ImportPage);
     }
@@ -164,7 +176,7 @@ public partial class MainWindowViewModel : ObservableObject
             return;
         }
         
-        Video = new Video(videoPath);
+        _video = new Video(videoPath);
         SetActivePage(Pages.EditorPage);
         Pages.EditorPage.SubscribeToSelectedButtonChanged(SetDetailsControl);
     }
@@ -179,7 +191,8 @@ public partial class MainWindowViewModel : ObservableObject
         // Limits file selection to MP4, MOV, and WebM files.
         Patterns = ["*.mp4", "*.mov", "*.webm"],
         // Limits file selection to MP4, MOV, and WebM files on macOS.
-        AppleUniformTypeIdentifiers = ["public.mpeg-4", "com.apple.quicktime-movie", "org.webmproject.webm"], 
+        AppleUniformTypeIdentifiers = ["public.mpeg-4", "com.apple.quicktime-movie", 
+            "org.webmproject.webm"],
         // Limits file selection to MP4, MOV, and WebM files on Linux.
         MimeTypes = ["video/mp4", "video/quicktime", "video/webm"]
     };
@@ -227,14 +240,133 @@ public partial class MainWindowViewModel : ObservableObject
     
     #region EditorPage
     
-    [ObservableProperty] private Control _activeEditingDetailsControl = new TrimDetails();
+    [ObservableProperty] private OperationDetailsControl _activeEditingDetailsControl 
+        = new TrimDetails();
     
-    private void SetDetailsControl(UserControl detailsControl) 
-        => ActiveEditingDetailsControl = detailsControl;
+    private Video? _video;
+
+    private readonly string _outPath = GetAssemblyPath() + @"\TempVideos";
     
-    public static FfmpegEditor? FfmpegEditor { get; set; }
-    public static Video? Video { get; set; }
-    public static VideoEditor.VideoEditor? VideoEditor { get; set; }
+    public VideoEditor.VideoEditor VideoEditor
+    {
+        get
+        {
+            if (_videoEditor is not null)
+                return _videoEditor;
+
+            if (_video is null)
+                throw new NullReferenceException("_video is null");
+
+            var ffmpegBinFolder = new DirectoryInfo(InputtedFfmpegPath);
+            var ffmpegTempFolder = new DirectoryInfo(InputtedTempPath);
+            var ffmpeg = new FfmpegEditor(ffmpegBinFolder, ffmpegTempFolder);
+            
+            var outDirectory = new DirectoryInfo(_outPath);
+            
+            _videoEditor = new VideoEditor.VideoEditor(_video, ffmpeg, ffmpeg, ffmpeg, 
+                outDirectory, _video.Name, _video.ExtensionAsEnum());
+            return _videoEditor;
+        }
+    }
+    private VideoEditor.VideoEditor? _videoEditor;
+    
+    private void SetDetailsControl(OperationDetailsControl detailsControl)
+    {
+        ActiveEditingDetailsControl = detailsControl;
+    }
+
+    [RelayCommand]
+    private void PerformOperation()
+    {
+        ActiveEditingDetailsControl.OnPerformOperation();
+        
+        OperationDetailsViewModel userInput = ActiveEditingDetailsControl.ViewModel;
+        BooleanResponse response = DelegateOperation(VideoEditor, userInput);
+        if (response.Success)
+        {
+            VideoEditor.CopyEditedToOriginal();
+        }
+
+        Debug.WriteLine($"{(response.Success ? "Success" : "Fail")} - {response.ResponseMsg}");
+    }
+
+    [SuppressMessage("ReSharper", "ConvertTypeCheckPatternToNullCheck")]
+    private BooleanResponse DelegateOperation(VideoEditor.VideoEditor editor, 
+        OperationDetailsViewModel userInput)
+    {
+        BooleanResponse res;
+        EditOperation operationType = ActiveEditingDetailsControl.OperationType;
+        switch (operationType)
+        {
+            case EditOperation.Trim:
+                res = editor.Trim(userInput.StartTime, userInput.EndTime ?? editor.Footage.Duration);
+                break;
+            case EditOperation.Capture:
+                if (userInput.Width is null && userInput.Height is null)
+                {
+                    res = editor.CaptureFullImage(userInput.StartTime);
+                }
+                else
+                {
+                    Size widthHeight = new Size(userInput.Width ?? -1, userInput.Height ?? -1); 
+                    res = editor.CaptureCroppedImage(widthHeight, userInput.StartTime);
+                }
+                break;
+            case EditOperation.Merge:
+                if (userInput.VideoPath is null)
+                {
+                    res = new BooleanResponse(false, "VideoPath is null");
+                }
+                else
+                {
+                    res = editor.MergeWith([userInput.VideoPath.FullName]);
+                }
+                break;
+            case EditOperation.Mute:
+                res = editor.Mute(); 
+                break;
+            case EditOperation.Convert:
+                bool parsed = Enum.TryParse(userInput.NewExtension, true, out IEditor.Extension newExt);
+                if (!parsed)
+                {
+                    res = new BooleanResponse(false, $"Invalid extension {userInput.NewExtension}");
+                }
+                else
+                {
+                    res = editor.Convert(newExt);
+                }
+                break;
+            case EditOperation.Gif:
+                TimeSpan endTime = userInput.EndTime ?? editor.Footage.Duration;
+                TimeSpan duration = userInput.Duration ?? TimeSpan.Zero;
+                Size size = new Size(userInput.Width ?? -1, userInput.Height ?? -1);
+                res = editor.CaptureGif(userInput.StartTime, endTime, duration, size);
+                break;
+            case EditOperation.Compress:
+                if (userInput.CompressionLevel is null && userInput.SizeInMb is null)
+                {
+                    const string msg = "Either compression level or desired size should be defined.";
+                    res = new BooleanResponse(false, msg);
+                }
+                else if (userInput.CompressionLevel is float compLevel)
+                {
+                    res = editor.CompressBy(compLevel);
+                } 
+                else if (userInput.SizeInMb is int sizeInMb)
+                {
+                    res = editor.CompressDownTo(sizeInMb * 1024);
+                }
+                else
+                {
+                    res = new BooleanResponse(false, "Unexpected error.");
+                }
+                break;
+            default:
+                res = new BooleanResponse(false, $"Unsupported Operation {operationType}!");
+                break;
+        }
+        return res;
+    }
     
     #endregion
     

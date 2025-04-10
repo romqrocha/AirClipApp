@@ -1,12 +1,19 @@
 ﻿using AirClipCCL.ViewModels;
-using Avalonia.Controls;
 
 namespace AirClipCCL.Views;
 
-public partial class CaptureDetails : UserControl
+public partial class CaptureDetails : OperationDetailsControl
 {
-    /// <summary> View Model for this Control </summary>
-    public OperationDetailsViewModel ViewModel { get; } = new OperationDetailsViewModel();
+    /// <inheritdoc/>
+    public override EditOperation OperationType => EditOperation.Capture;
+
+    /// <inheritdoc/>
+    public override void OnPerformOperation()
+    {
+        ViewModel.ParseStartTime();
+        ViewModel.ParseWidth();
+        ViewModel.ParseHeight();
+    }
     
     public CaptureDetails()
     {

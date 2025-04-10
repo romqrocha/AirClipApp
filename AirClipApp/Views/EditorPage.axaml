@@ -18,10 +18,16 @@
                     HorizontalAlignment="Stretch" BorderBrush="Gray" BorderThickness="0.5">
                 <views:ScrollableSelectionRow Name="SelectionRow"/>
             </Border>
-            <Border Width="300" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
-                    BorderBrush="Gray" BorderThickness="0.5" 
-                    Child="{Binding ActiveEditingDetailsControl}">
-            </Border>
+            <StackPanel>
+                <Border DockPanel.Dock="Left" Width="300" Height="300" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"
+                        BorderBrush="Gray" BorderThickness="0.5" 
+                        Child="{Binding ActiveEditingDetailsControl}">
+                </Border>
+                <Button DockPanel.Dock="Bottom" Content="Perform Edit" FontWeight="Bold" 
+                        HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                        Width="120" Height="30" HorizontalAlignment="Center" 
+                        Command="{Binding PerformOperationCommand}"/>
+            </StackPanel>
         </DockPanel>
         
         <ScrollViewer DockPanel.Dock="Bottom" HorizontalScrollBarVisibility="Auto" Height="100"

@@ -1,13 +1,22 @@
 ﻿using AirClipCCL.ViewModels;
-using Avalonia.Controls;
 
 namespace AirClipCCL.Views;
 
-public partial class GifDetails : UserControl
+public partial class GifDetails : OperationDetailsControl
 {
-    /// <summary> View Model for this Control </summary>
-    public OperationDetailsViewModel ViewModel { get; } = new OperationDetailsViewModel();
-    
+    /// <inheritdoc/>
+    public override EditOperation OperationType => EditOperation.Gif;
+
+    /// <inheritdoc/>
+    public override void OnPerformOperation()
+    {
+        ViewModel.ParseStartTime();
+        ViewModel.ParseEndTime();
+        ViewModel.ParseDuration();
+        ViewModel.ParseWidth();
+        ViewModel.ParseHeight();
+    }
+
     public GifDetails()
     {
         InitializeComponent();

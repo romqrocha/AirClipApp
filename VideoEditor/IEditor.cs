@@ -60,6 +60,11 @@ public interface IEditor
         Webm, 
     }
 
+    /// <summary>
+    /// Converts the given extension enum to a string.
+    /// </summary>
+    /// <param name="extension">The extension enum to be converted.</param>
+    /// <returns>{.ext}</returns>
     public static string ExtToString(Extension extension) => 
         $".{extension.ToString().ToLower()}";
 }

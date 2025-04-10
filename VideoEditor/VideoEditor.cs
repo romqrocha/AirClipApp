@@ -10,43 +10,70 @@ namespace VideoEditor;
 /// <authors> Rodrigo Rocha, Tae Seo </authors>
 public class VideoEditor
 {
-    private Video _footage;
     private readonly IEditor _editor;
     private readonly IGifCreator _gifCreator;
     private readonly ICompressor _compressor;
     
-    private DirectoryInfo? _outputDirectory;
-    private string? _outputFileName;
-    private IEditor.Extension? _outputExtension;
+    private DirectoryInfo _outputDirectory;
+    private string _outputFileName;
+    private IEditor.Extension _outputExtension;
 
     /** Absolute path to the imported video file. */
-    private string InputPath => _footage.Path;
+    private string InputPath => Footage.AbsPath;
 
     /** Absolute path to the final output file. */
-    private string OutputPath => Path.Join(_outputDirectory?.FullName, 
-        $"{_outputFileName}{IEditor.ExtToString(_outputExtension ?? IEditor.Extension.Mp4)}");
+    private string OutputPath => Path.Join(_outputDirectory.FullName, 
+        $"{_outputFileName + EditedKey}{IEditor.ExtToString(_outputExtension)}");
+    
+    public Video Footage { get; private set; }
 
+    private const string OriginalKey = "!ogO408";
+    private const string EditedKey = "!ed0408";
+    
     /// <summary>
     /// Standard constructor for VideoEditor.
     /// </summary>
     /// <param name="video">The video to be edited.</param>
     /// <param name="editor">Object implementing IEditor to provide basic video editing
-    /// functionality.</param>
+    ///     functionality.</param>
     /// <param name="gifCreator">Object implementing IGifCreator to provide gif creation
-    /// functionality.</param>
+    ///     functionality.</param>
     /// <param name="compressor">Object implementing ICompressor to provide video compression
-    /// functionality.</param>
-    public VideoEditor(Video video, IEditor editor, IGifCreator gifCreator, ICompressor compressor)
+    ///     functionality.</param>
+    /// <param name="outputDirectory"></param>
+    /// <param name="outputFileName"></param>
+    /// <param name="outputExtension"></param>
+    public VideoEditor(Video video, IEditor editor, IGifCreator gifCreator, ICompressor compressor,
+        DirectoryInfo outputDirectory, string outputFileName, IEditor.Extension outputExtension)
     {
-        _footage = video;
+        Footage = video;
 
         _editor = editor;
         _gifCreator = gifCreator;
         _compressor = compressor;
         
-        // _outputDirectory = outputDirectory;
-        // _outputFileName = outputFileName;
-        // _outputExtension = outputExtension;
+        _outputDirectory = outputDirectory;
+        _outputFileName = outputFileName;
+        _outputExtension = outputExtension;
+        
+        var newLocation = OutputPath.Replace(EditedKey, OriginalKey);
+        File.Copy(Footage.AbsPath, newLocation, true);
+        Footage = new Video(newLocation);
+
+        if (!outputDirectory.Exists)
+        {
+            outputDirectory.Create();
+        }
+    }
+
+    /// <summary>
+    /// Move the video from the edited location to the original location.
+    /// </summary>
+    public void CopyEditedToOriginal()
+    {
+        var newLocation = OutputPath.Replace(EditedKey, OriginalKey);
+        File.Copy(OutputPath, newLocation, true);
+        Footage = new Video(newLocation);
     }
 
     /// <summary>
@@ -155,7 +182,7 @@ public class VideoEditor
     public BooleanResponse ConvertToGif()
     {
         _gifCreator.CaptureGif(InputPath, OutputPath, new Size(-1, -1),
-            TimeSpan.Zero, _footage.Duration, TimeSpan.Zero);
+            TimeSpan.Zero, Footage.Duration, TimeSpan.Zero);
         
         return BooleanResponse.Successful;
     }
@@ -226,7 +253,7 @@ public class VideoEditor
     /// <returns>True if the given time span is out of bounds.</returns>
     private bool TimeSpanIsOutOfBounds(TimeSpan span)
     {
-        if (span > _footage.Duration)
+        if (span > Footage.Duration)
             return true;
         
         if (span < TimeSpan.Zero)

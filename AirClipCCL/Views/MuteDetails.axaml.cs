@@ -1,16 +1,22 @@
 ﻿using AirClipCCL.ViewModels;
-using Avalonia.Controls;
 
 namespace AirClipCCL.Views;
 
-public partial class MuteDetails : UserControl
+public partial class MuteDetails : OperationDetailsControl
 {
-    /// <summary> View Model for this Control </summary>
-    public OperationDetailsViewModel ViewModel { get; } = new OperationDetailsViewModel();
+    /// <inheritdoc/>
+    public override EditOperation OperationType => EditOperation.Mute;
     
     public MuteDetails()
     {
         InitializeComponent();
         DataContext = ViewModel;
     }
+
+    public override void OnPerformOperation()
+    {
+        
+    }
+    
+    
 }
