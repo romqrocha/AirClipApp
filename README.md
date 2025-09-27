@@ -1,5 +1,9 @@
 # AirClip - Lightweight Video Editor
 
+## WARNING
+This is less of a usable app and more of a learning project. 
+Even if it barely counts as an editor though, I'd still like to showcase the code and the effort that went into it.
+
 ## Setting up your project environment
 1. First, install .NET SDK 9.0.2 at https://dotnet.microsoft.com/en-us/download
 2. Then, install Avalonia UI Templates by running the command `dotnet new install Avalonia.Templates` on your system terminal
